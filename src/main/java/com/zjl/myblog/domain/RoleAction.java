@@ -19,7 +19,7 @@ public class RoleAction implements Serializable {
     private static final long serialVersionUID = 8498223194744423909L;
 
     @Id
-    @GeneratedValue(strategy=GenerationType.AUTO)
+    @GeneratedValue(strategy=GenerationType.IDENTITY)
     private Integer id;
 
     //角色id

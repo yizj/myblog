@@ -19,7 +19,7 @@ public class Word implements Serializable {
     private static final long serialVersionUID = -4691455148481647443L;
 
     @Id
-    @GeneratedValue(strategy=GenerationType.AUTO)
+    @GeneratedValue(strategy=GenerationType.IDENTITY)
     private Integer id;
 
     @Column(name = "word_title")

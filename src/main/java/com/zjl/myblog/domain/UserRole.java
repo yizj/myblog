@@ -19,7 +19,7 @@ public class UserRole implements Serializable {
     private static final long serialVersionUID = 3386219290613933767L;
 
     @Id
-    @GeneratedValue(strategy=GenerationType.AUTO)
+    @GeneratedValue(strategy=GenerationType.IDENTITY)
     private Integer id;
 
     //角色id

@@ -20,7 +20,7 @@ public class ArticleType implements Serializable {
     private static final long serialVersionUID = -2459104959437545431L;
 
     @Id
-    @GeneratedValue(strategy = GenerationType.AUTO)
+    @GeneratedValue(strategy=GenerationType.IDENTITY)
     private Integer id;
 
     @Column(name = "articletype_name")

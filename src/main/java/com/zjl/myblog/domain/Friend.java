@@ -19,7 +19,7 @@ public class Friend implements Serializable {
     private static final long serialVersionUID = 5591440628416674493L;
 
     @Id
-    @GeneratedValue(strategy = GenerationType.AUTO)
+    @GeneratedValue(strategy=GenerationType.IDENTITY)
     private Integer id;
 
     //关注的朋友的id

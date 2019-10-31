@@ -19,7 +19,7 @@ public class Photo implements Serializable {
     private static final long serialVersionUID = 8493191393416980345L;
 
     @Id
-    @GeneratedValue(strategy=GenerationType.AUTO)
+    @GeneratedValue(strategy=GenerationType.IDENTITY)
     private Integer id;
 
     @Column(name = "photo_addr")

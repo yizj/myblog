@@ -13,7 +13,7 @@ public class BaseResponseUtil{
     public static BaseResponse success(Object object,String msg)
     {
         BaseResponse baseResponse=new BaseResponse();
-        baseResponse.setCode(0);
+        baseResponse.setCode(ConstantUtils.SUCCESSCODE);
         baseResponse.setMsg(msg);
         baseResponse.setData(object);
 

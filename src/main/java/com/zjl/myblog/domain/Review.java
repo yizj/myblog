@@ -19,7 +19,7 @@ public class Review implements Serializable {
     private static final long serialVersionUID = -6888169019765149804L;
 
     @Id
-    @GeneratedValue(strategy=GenerationType.AUTO)
+    @GeneratedValue(strategy=GenerationType.IDENTITY)
     private Integer id;
 
     //被评论文章的ID
