@@ -5,6 +5,10 @@ import com.zjl.myblog.domain.Role;
 import com.zjl.myblog.service.RoleService;
 import com.zjl.myblog.utils.BaseResponseUtil;
 import com.zjl.myblog.utils.ValidatedUtils;
+import io.swagger.annotations.Api;
+import io.swagger.annotations.ApiImplicitParam;
+import io.swagger.annotations.ApiOperation;
+import io.swagger.annotations.ApiParam;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.validation.BindingResult;
 import org.springframework.validation.annotation.Validated;
@@ -20,11 +24,14 @@ import org.springframework.web.bind.annotation.RestController;
  */
 @RestController
 @RequestMapping(value = "/role")
+@Api(tags = "角色数据接口")
 public class RoleController {
 
     @Autowired
     private RoleService roleService;
 
+    @ApiOperation(value = "添加角色",notes = "post请求")
+    @ApiImplicitParam(paramType = "path",name = "roleName",value="角色名称",required =true )
     @PostMapping(value = "/add")
     public BaseResponse<Role> addRole(@RequestBody @Validated Role role, BindingResult bindingResult) throws Exception
     {
