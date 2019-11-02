@@ -15,4 +15,22 @@ public class ConstantUtils {
 
     //role验证消息
     public static final String ROLEPATTERN="角色名不能为空";
+
+    //user验证消息
+    public static final String USERNAMENOTNULL="用户名不能为空";
+
+    public static final String USERNAMESIZE="用户名应该在六位与二十位之间";
+
+    public static final String PWD="密码应该在六位与二十位之间";
+
+    public static final String EMAILNOTNULL="邮箱不能为空";
+
+    public static final String EMAILPATTERN="邮箱格式不正确";
+
+    public static final String PHONENOTNULL="手机号码不能为空";
+
+    public static final String PHONEPATTERN="手机号码格式不正确";
+
+
+
 }

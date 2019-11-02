@@ -1,9 +1,14 @@
 package com.zjl.myblog.domain;
 
+import com.zjl.myblog.utils.ConstantUtils;
 import lombok.Data;
 import lombok.ToString;
 
 import javax.persistence.*;
+import javax.validation.constraints.Email;
+import javax.validation.constraints.NotNull;
+import javax.validation.constraints.Pattern;
+import javax.validation.constraints.Size;
 import java.io.Serializable;
 
 /**
@@ -24,15 +29,22 @@ public class User implements Serializable{
     private Integer id;
 
     @Column(name = "user_name")
+    @NotNull(message = ConstantUtils.USERNAMENOTNULL)
+    @Size(min=6,max = 20,message = ConstantUtils.USERNAMESIZE)
     private String userName;
 
     @Column(name = "user_pwd")
+    @Size(min=6,max = 20,message = ConstantUtils.PWD)
     private String userPwd;
 
     @Column(name="user_email")
+    @Email(message =ConstantUtils.EMAILPATTERN )
+    @NotNull(message = ConstantUtils.EMAILNOTNULL)
     private String userEmail;
 
     @Column(name="user_phone")
+    @NotNull(message =ConstantUtils.PHONENOTNULL )
+    @Pattern(regexp = "^[1][3-9][0-9]{9}$",message =ConstantUtils.PHONEPATTERN )
     private String userPhone;
 
 }
