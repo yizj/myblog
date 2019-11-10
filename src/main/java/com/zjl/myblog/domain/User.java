@@ -1,5 +1,6 @@
 package com.zjl.myblog.domain;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import com.zjl.myblog.utils.ConstantUtils;
 import lombok.Data;
 import lombok.ToString;
@@ -10,6 +11,9 @@ import javax.validation.constraints.NotNull;
 import javax.validation.constraints.Pattern;
 import javax.validation.constraints.Size;
 import java.io.Serializable;
+import java.util.Collection;
+import java.util.HashSet;
+import java.util.Set;
 
 /**
 @author zjl
@@ -34,7 +38,6 @@ public class User implements Serializable{
     private String userName;
 
     @Column(name = "user_pwd")
-    @Size(min=6,max = 20,message = ConstantUtils.PWD)
     private String userPwd;
 
     @Column(name="user_email")
@@ -46,5 +49,14 @@ public class User implements Serializable{
     @NotNull(message =ConstantUtils.PHONENOTNULL )
     @Pattern(regexp = "^[1][3-9][0-9]{9}$",message =ConstantUtils.PHONEPATTERN )
     private String userPhone;
+
+    @ManyToMany(targetEntity = Role.class,cascade = CascadeType.ALL)
+    @JoinTable(name="tb_user_role",
+               //当前对象在中间表中的外键
+               joinColumns = {@JoinColumn(name="user_id",referencedColumnName = "id")},
+               //对方对象在中间表中的外键
+               inverseJoinColumns = {@JoinColumn(name = "role_id",referencedColumnName = "id")}
+    )
+    private Set<Role> roles=new HashSet<>();
 
 }

@@ -5,6 +5,7 @@ import lombok.ToString;
 
 import javax.persistence.*;
 import java.io.Serializable;
+import java.util.Set;
 
 /**
 @author zjl
@@ -16,6 +17,7 @@ import java.io.Serializable;
 @Data
 @ToString
 public class Action implements Serializable {
+
     private static final long serialVersionUID = -4966720157938737838L;
 
     @Id
@@ -25,12 +27,12 @@ public class Action implements Serializable {
     @Column(name = "actiob_url")
     private String actiobUrl;
 
-    //父级权限
     @Column(name = "actiob_group_id")
     private String actiobGroupId;
 
-    //权限名称
     @Column(name="action_name")
     private String actionName;
 
+    @ManyToMany(mappedBy="actions")
+    private Set<Role> roles;
 }

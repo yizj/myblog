@@ -24,7 +24,7 @@ import org.springframework.web.bind.annotation.RestController;
  */
 @RestController
 @RequestMapping(value = "/role")
-@Api(tags = "角色数据接口")
+@Api(tags = "角色接口")
 public class RoleController {
 
     @Autowired
