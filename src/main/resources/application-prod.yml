@@ -10,6 +10,19 @@ spring:
     url: jdbc:mysql://127.0.0.1:3306/blog
   jpa:
     show-sql: true
+#redis配置
+  redis:
+    host: 101.200.61.210
+    database: 0
+    port: 6379
+    password: hxl#101095
+    jedis:
+      pool:
+        min-idle: 0
+        max-idle: 8
+        max-active: 8
+        max-wait: -1ms
+    timeout: 3000ms
 
 #日志配置
 logging:
