@@ -38,7 +38,7 @@ public class AdminController {
         //添加用户校验信息
         Subject subject= SecurityUtils.getSubject();
         UsernamePasswordToken usernamePasswordToken=new UsernamePasswordToken(
-                user.getUserName(),
+                user.getUserEmail(),
                 user.getUserPwd()
         );
         subject.login(usernamePasswordToken);
