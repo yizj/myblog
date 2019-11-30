@@ -7,10 +7,10 @@ import javax.persistence.*;
 import java.io.Serializable;
 
 /**
-@author zjl
-@description 留言类
-@data 2019/10/30
-*/
+ * @author zjl
+ * @description 留言类
+ * @data 2019/10/30
+ */
 @Entity
 @Table(name = "tb_word")
 @Data
@@ -19,7 +19,7 @@ public class Word implements Serializable {
     private static final long serialVersionUID = -4691455148481647443L;
 
     @Id
-    @GeneratedValue(strategy=GenerationType.IDENTITY)
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Integer id;
 
     @Column(name = "word_title")
@@ -28,12 +28,12 @@ public class Word implements Serializable {
     @Column(name = "word_content")
     private String wordContent;
 
-    @Column(name="word_sendtime")
+    @Column(name = "word_sendtime")
     private String wordSendTime;
 
-    @Column(name="word_masterid")
+    @Column(name = "word_masterid")
     private Integer wordMasterId;
 
-    @Column(name="word_authid")
+    @Column(name = "word_authid")
     private Integer wordAuthid;
 }

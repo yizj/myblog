@@ -14,9 +14,8 @@ public class ArticleTypeServiceImpl implements ArticleTypeService {
 
     @Override
     public ArticleType addArticleType(ArticleType articleType) throws Exception {
-        ArticleType articleType1=articleTypeRepository.save(articleType);
-        if(articleType==null)
-        {
+        ArticleType articleType1 = articleTypeRepository.save(articleType);
+        if (articleType == null) {
             throw new Exception("添加文章种类出错");
         }
         return articleType1;

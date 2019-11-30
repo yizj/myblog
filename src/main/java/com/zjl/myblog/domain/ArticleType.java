@@ -7,10 +7,10 @@ import javax.persistence.*;
 import java.io.Serializable;
 
 /**
-@author zjl
-@description 文章类型
-@data 2019/10/30
-*/
+ * @author zjl
+ * @description 文章类型
+ * @data 2019/10/30
+ */
 
 @Entity
 @Table(name = "tb_articletype")
@@ -20,7 +20,7 @@ public class ArticleType implements Serializable {
     private static final long serialVersionUID = -2459104959437545431L;
 
     @Id
-    @GeneratedValue(strategy=GenerationType.IDENTITY)
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Integer id;
 
     @Column(name = "articletype_name")

@@ -14,9 +14,8 @@ public class ArticleServiceImpl implements ArticleService {
 
     @Override
     public Article addArticle(Article article) throws Exception {
-        Article resArticle=articleRepository.save(article);
-        if(resArticle==null)
-        {
+        Article resArticle = articleRepository.save(article);
+        if (resArticle == null) {
             throw new Exception("发布文章失败!");
         }
         return resArticle;

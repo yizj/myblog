@@ -22,11 +22,15 @@ public class Friend implements Serializable {
     @GeneratedValue(strategy=GenerationType.IDENTITY)
     private Integer id;
 
-    //关注的朋友的id
+    /**
+     * 关注的朋友的id
+     */
     @Column(name = "friend_masterid")
     private Integer friendMasterId;
 
-    //博主自己的ID
+    /**
+     * 博主自己的ID
+     */
     @Column(name = "friend_id")
     private Integer friendId;
 

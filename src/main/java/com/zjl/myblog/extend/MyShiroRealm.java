@@ -27,14 +27,14 @@ public class MyShiroRealm extends AuthorizingRealm {
 
     @Override
     protected AuthenticationInfo doGetAuthenticationInfo(AuthenticationToken authenticationToken) throws AuthenticationException {
-        UsernamePasswordToken token=(UsernamePasswordToken)authenticationToken;
-        LogUtil.info(MyShiroRealm.class,"开始执行认证方法:参数是{0}",token);
-        User user=userRepository.findByUserEmail(token.getUsername());
+        UsernamePasswordToken token = (UsernamePasswordToken) authenticationToken;
+        LogUtil.info(MyShiroRealm.class, "开始执行认证方法:参数是{0}", token);
+        User user = userRepository.findByUserEmail(token.getUsername());
         String name = authenticationToken.getPrincipal().toString();
-        if(user==null) {
+        if (user == null) {
             return null;
         }
-        SimpleAuthenticationInfo simpleAuthenticationInfo=new SimpleAuthenticationInfo(name, user.getUserPwd(), getName());
+        SimpleAuthenticationInfo simpleAuthenticationInfo = new SimpleAuthenticationInfo(name, user.getUserPwd(), getName());
         return simpleAuthenticationInfo;
     }
 }

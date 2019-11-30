@@ -25,12 +25,12 @@ public class ArticleTypeController {
     private ArticleTypeService articleTypeService;
 
     @PostMapping
-    @ApiOperation(value = "添加种类",notes = "post请求")
-    @ApiImplicitParam(paramType = "path",required =true )
-    public BaseResponse<ArticleType> addArticleType(@RequestBody@Validated ArticleType articleType, BindingResult bindingResult) throws Exception {
+    @ApiOperation(value = "添加种类", notes = "post请求")
+    @ApiImplicitParam(paramType = "path", required = true)
+    public BaseResponse<ArticleType> addArticleType(@RequestBody @Validated ArticleType articleType, BindingResult bindingResult) throws Exception {
         //校验参数
         ValidatedUtils.getBindingResult(bindingResult);
-        return BaseResponseUtil.success(articleTypeService.addArticleType(articleType),"添加角色成功");
+        return BaseResponseUtil.success(articleTypeService.addArticleType(articleType), "添加角色成功");
     }
 
 }

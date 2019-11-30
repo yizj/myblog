@@ -1,15 +1,12 @@
 package com.zjl.myblog.config;
 
 import com.zjl.myblog.extend.MyShiroRealm;
-import org.apache.shiro.mgt.SecurityManager;
-import org.apache.shiro.spring.security.interceptor.AuthorizationAttributeSourceAdvisor;
 import org.apache.shiro.spring.web.ShiroFilterFactoryBean;
 import org.apache.shiro.web.mgt.DefaultWebSecurityManager;
 import org.springframework.beans.factory.annotation.Qualifier;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 
-import java.util.HashMap;
 import java.util.LinkedHashMap;
 import java.util.Map;
 
@@ -22,27 +19,24 @@ import java.util.Map;
 public class ShiroConfig {
 
     @Bean(name = "myShiroRealm")
-    MyShiroRealm myShiroRealm()
-    {
+    MyShiroRealm myShiroRealm() {
         return new MyShiroRealm();
     }
 
     @Bean(name = "securityManager")
-    DefaultWebSecurityManager defaultWebSecurityManager(@Qualifier("myShiroRealm") MyShiroRealm myShiroRealm)
-    {
+    DefaultWebSecurityManager defaultWebSecurityManager(@Qualifier("myShiroRealm") MyShiroRealm myShiroRealm) {
         DefaultWebSecurityManager securityManager = new DefaultWebSecurityManager();
         securityManager.setRealm(myShiroRealm);
         return securityManager;
     }
 
     @Bean
-    public ShiroFilterFactoryBean shiroFilterFactoryBean(@Qualifier("securityManager")DefaultWebSecurityManager defaultWebSecurityManager)
-    {
-        ShiroFilterFactoryBean shiroFilterFactoryBean=new ShiroFilterFactoryBean();
+    public ShiroFilterFactoryBean shiroFilterFactoryBean(@Qualifier("securityManager") DefaultWebSecurityManager defaultWebSecurityManager) {
+        ShiroFilterFactoryBean shiroFilterFactoryBean = new ShiroFilterFactoryBean();
         shiroFilterFactoryBean.setSecurityManager(defaultWebSecurityManager);
         Map filterMap = new LinkedHashMap();
         filterMap.put("/login", "anon");
-        filterMap.put("/role","authc");
+        filterMap.put("/role", "authc");
         shiroFilterFactoryBean.setLoginUrl("/admin");
         shiroFilterFactoryBean.setFilterChainDefinitionMap(filterMap);
         return shiroFilterFactoryBean;

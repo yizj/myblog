@@ -29,19 +29,19 @@ public class AdminController {
     @Autowired
     private UserService userService;
 
-    @ApiOperation(value = "添加管理员",notes = "post请求")
-    @ApiImplicitParam(paramType = "path",required = true)
+    @ApiOperation(value = "添加管理员", notes = "post请求")
+    @ApiImplicitParam(paramType = "path", required = true)
     @PostMapping
     public BaseResponse<User> addUser(@RequestBody @Validated User user, BindingResult bindingResult) throws Exception {
         //校验参数
         ValidatedUtils.getBindingResult(bindingResult);
         //添加用户校验信息
-        Subject subject= SecurityUtils.getSubject();
-        UsernamePasswordToken usernamePasswordToken=new UsernamePasswordToken(
+        Subject subject = SecurityUtils.getSubject();
+        UsernamePasswordToken usernamePasswordToken = new UsernamePasswordToken(
                 user.getUserEmail(),
                 user.getUserPwd()
         );
         subject.login(usernamePasswordToken);
-        return BaseResponseUtil.success(userService.addUser(user),"添加管理员成功");
+        return BaseResponseUtil.success(userService.addUser(user), "添加管理员成功");
     }
 }

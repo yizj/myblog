@@ -22,11 +22,15 @@ public class Review implements Serializable {
     @GeneratedValue(strategy=GenerationType.IDENTITY)
     private Integer id;
 
-    //被评论文章的ID
+    /**
+     * 被评论文章的ID
+     */
     @Column(name = "article_id")
     private Integer articleId;
 
-    //评论人的ID
+    /**
+     * 评论人的ID
+     */
     @Column(name = "master_id")
     private Integer masterId;
 

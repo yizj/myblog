@@ -21,8 +21,7 @@ public class ValidatedUtils {
      */
     public static void getBindingResult(BindingResult bindingResult) throws Exception {
         List<String> errors=new ArrayList<>();
-        if(bindingResult.hasErrors())
-        {
+        if(bindingResult.hasErrors()) {
             List<ObjectError> objectErrors=bindingResult.getAllErrors();
             for(ObjectError objectError:objectErrors)
             {
@@ -30,8 +29,7 @@ public class ValidatedUtils {
             }
         }
 
-        if(errors.size()>0)
-        {
+        if(errors.size()>0) {
             StringBuilder stringBuilder=new StringBuilder();
             for(String s:errors)
             {

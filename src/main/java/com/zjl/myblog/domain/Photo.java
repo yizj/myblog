@@ -7,10 +7,10 @@ import javax.persistence.*;
 import java.io.Serializable;
 
 /**
-@author zjl
-@description 照片
-@data 2019/10/30
-*/
+ * @author zjl
+ * @description 照片
+ * @data 2019/10/30
+ */
 @Entity
 @ToString
 @Table(name = "tb_photo")
@@ -19,7 +19,7 @@ public class Photo implements Serializable {
     private static final long serialVersionUID = 8493191393416980345L;
 
     @Id
-    @GeneratedValue(strategy=GenerationType.IDENTITY)
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Integer id;
 
     @Column(name = "photo_addr")

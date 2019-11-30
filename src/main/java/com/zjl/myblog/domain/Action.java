@@ -8,10 +8,10 @@ import java.io.Serializable;
 import java.util.Set;
 
 /**
-@author zjl
-@description 权限类
-@data 2019/10/30
-*/
+ * @author zjl
+ * @description 权限类
+ * @data 2019/10/30
+ */
 @Entity
 @Table(name = "tb_action")
 @Data
@@ -21,7 +21,7 @@ public class Action implements Serializable {
     private static final long serialVersionUID = -4966720157938737838L;
 
     @Id
-    @GeneratedValue(strategy=GenerationType.IDENTITY)
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Integer id;
 
     @Column(name = "actiob_url")
@@ -30,9 +30,9 @@ public class Action implements Serializable {
     @Column(name = "actiob_group_id")
     private String actiobGroupId;
 
-    @Column(name="action_name")
+    @Column(name = "action_name")
     private String actionName;
 
-    @ManyToMany(mappedBy="actions")
+    @ManyToMany(mappedBy = "actions")
     private Set<Role> roles;
 }
