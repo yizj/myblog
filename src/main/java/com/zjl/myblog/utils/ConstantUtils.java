@@ -16,12 +16,10 @@ public class ConstantUtils {
      * 消息成功碼
      */
     public static final Integer SUCCESSCODE = 200;
-
     /**
      * role验证消息
      */
     public static final String ROLEPATTERN = "角色名不能为空";
-
     /**
      * user验证消息
      */

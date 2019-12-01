@@ -15,7 +15,6 @@ public class BaseResponseUtil {
         baseResponse.setCode(ConstantUtils.SUCCESSCODE);
         baseResponse.setMsg(msg);
         baseResponse.setData(object);
-
         return baseResponse;
     }
 
