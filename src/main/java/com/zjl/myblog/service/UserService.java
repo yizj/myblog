@@ -17,6 +17,6 @@ public interface UserService {
 
      List<User> addUsers(List<User> user) throws Exception;
 
-     UserDto registUser(String userEmail, String userPwd);
+     UserDto userLogin(String userEmail, String userPwd);
 
 }

@@ -1,8 +1,8 @@
 package com.zjl.myblog.controller;
 
 import com.zjl.myblog.api.BaseResponse;
-import com.zjl.myblog.domain.Role;
 import com.zjl.myblog.domain.User;
+import com.zjl.myblog.domain.UserDto;
 import com.zjl.myblog.service.UserService;
 import com.zjl.myblog.utils.BaseResponseUtil;
 import com.zjl.myblog.utils.ValidatedUtils;
@@ -31,16 +31,19 @@ public class UserController {
     @ApiImplicitParam(paramType = "path",required = true)
     @PostMapping
     public BaseResponse<User> addUser(@RequestBody @Validated User user, BindingResult bindingResult) throws Exception {
-        //校验参数
+        // 校验参数
         ValidatedUtils.getBindingResult(bindingResult);
         return BaseResponseUtil.success(userService.addUser(user),"添加用户成功");
     }
 
-    @ApiOperation(value = "跳转到登陆页面",notes = "get请求")
+    @ApiOperation(value = "用户登录",notes = "get请求")
     @ApiImplicitParam(paramType = "path",required = true)
     @GetMapping
-    public BaseResponse loginUser()
-    {
-        return BaseResponseUtil.success("/login","跳转到登陆页面");
+    public BaseResponse<UserDto> loginUser(@Validated User user, BindingResult bindingResult) throws Exception {
+        // 校验参数
+        ValidatedUtils.getBindingResult(bindingResult);
+        return BaseResponseUtil.success(
+                userService.userLogin(user.getUserEmail(),user.getUserPwd()),
+                "用户登录成功");
     }
 }

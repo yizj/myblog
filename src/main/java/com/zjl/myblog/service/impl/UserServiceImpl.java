@@ -5,7 +5,10 @@ import com.zjl.myblog.domain.Role;
 import com.zjl.myblog.domain.User;
 import com.zjl.myblog.domain.UserDto;
 import com.zjl.myblog.repository.UserRepository;
+import com.zjl.myblog.service.RedisService;
 import com.zjl.myblog.service.UserService;
+import com.zjl.myblog.utils.BeanConvertUtil;
+import com.zjl.myblog.utils.JsonClassConvertUtil;
 import org.springframework.stereotype.Service;
 
 import javax.annotation.Resource;
@@ -23,6 +26,8 @@ public class UserServiceImpl implements UserService {
     @Resource
     private UserRepository userRepository;
 
+    @Resource
+    private RedisService redisService;
 
     @Override
     public User addUser(User user) throws Exception {
@@ -51,19 +56,27 @@ public class UserServiceImpl implements UserService {
     }
     /**
       *
-      * 用户注册
+      * 用户登录
       *
       * @exception
       */
     @Override
-    public UserDto registUser(String userEmail, String userPwd) {
-        UserDto userDto=new UserDto ();
+    public UserDto userLogin(String userEmail, String userPwd) {
         User user=userRepository.findUserByUserEmailAndUserPwd (userEmail, userPwd );
         if (user == null) {
             throw new RuntimeException ( "该用户不存在，请核对用户名密码是否正确" );
         }
+        // 对象转换
+        UserDto userDto=BeanConvertUtil.convert(user,UserDto.class);
         // 生成token
-        userDto.setToken (UUID.randomUUID ().toString ());
-        return null;
+        String token=UUID.randomUUID ().toString ();
+        userDto.setToken (token);
+        // 转换成json
+        String value= JsonClassConvertUtil.classToString(userDto);
+        // 保存到redis
+        redisService.set(token,value);
+        // 设置过期时间
+        redisService.expire(token,30*60);
+        return userDto;
     }
 }

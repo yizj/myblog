@@ -30,7 +30,7 @@ public class ReviewController {
     @Autowired
     private ReviewService reviewService;
 
-    @ApiOperation ( value = "发布文章评论",tags = "POST请求")
+    @ApiOperation ( value = "发布文章评论",notes = "POST请求")
     @PostMapping
     @ApiImplicitParam(paramType = "path" ,required = true)
     public BaseResponse<Review> addReview(@RequestBody @Validated Review review, BindingResult bindingResult) throws Exception {
