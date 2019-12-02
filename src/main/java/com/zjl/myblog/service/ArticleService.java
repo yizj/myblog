@@ -5,5 +5,5 @@ import com.zjl.myblog.domain.Article;
 
 public interface ArticleService {
 
-    public Article addArticle(Article article) throws Exception;
+     Article addArticle(Article article) throws Exception;
 }
