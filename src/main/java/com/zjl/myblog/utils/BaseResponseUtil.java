@@ -7,7 +7,6 @@ import com.zjl.myblog.api.BaseResponse;
  * @description 基础类返回工具
  * @data 2019/10/30
  */
-
 public class BaseResponseUtil {
 
     public static BaseResponse success(Object object, String msg) {
