@@ -20,25 +20,25 @@ public class ShiroConfig {
 
     @Bean(name = "myShiroRealm")
     MyShiroRealm myShiroRealm() {
-        return new MyShiroRealm();
+        return new MyShiroRealm ( );
     }
 
     @Bean(name = "securityManager")
     DefaultWebSecurityManager defaultWebSecurityManager(@Qualifier("myShiroRealm") MyShiroRealm myShiroRealm) {
-        DefaultWebSecurityManager securityManager = new DefaultWebSecurityManager();
-        securityManager.setRealm(myShiroRealm);
+        DefaultWebSecurityManager securityManager = new DefaultWebSecurityManager ( );
+        securityManager.setRealm ( myShiroRealm );
         return securityManager;
     }
 
     @Bean
     public ShiroFilterFactoryBean shiroFilterFactoryBean(@Qualifier("securityManager") DefaultWebSecurityManager defaultWebSecurityManager) {
-        ShiroFilterFactoryBean shiroFilterFactoryBean = new ShiroFilterFactoryBean();
-        shiroFilterFactoryBean.setSecurityManager(defaultWebSecurityManager);
-        Map filterMap = new LinkedHashMap();
-        filterMap.put("/login", "anon");
-        filterMap.put("/role", "authc");
-        shiroFilterFactoryBean.setLoginUrl("/admin");
-        shiroFilterFactoryBean.setFilterChainDefinitionMap(filterMap);
+        ShiroFilterFactoryBean shiroFilterFactoryBean = new ShiroFilterFactoryBean ( );
+        shiroFilterFactoryBean.setSecurityManager ( defaultWebSecurityManager );
+        Map filterMap = new LinkedHashMap ( );
+        filterMap.put ( "/login", "anon" );
+        filterMap.put ( "/role", "authc" );
+        shiroFilterFactoryBean.setLoginUrl ( "/admin" );
+        shiroFilterFactoryBean.setFilterChainDefinitionMap ( filterMap );
         return shiroFilterFactoryBean;
     }
 

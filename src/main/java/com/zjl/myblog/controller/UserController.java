@@ -39,11 +39,9 @@ public class UserController {
     @ApiOperation(value = "用户登录",notes = "get请求")
     @ApiImplicitParam(paramType = "path",required = true)
     @GetMapping
-    public BaseResponse<UserDto> loginUser(@Validated User user, BindingResult bindingResult) throws Exception {
-        // 校验参数
-        ValidatedUtils.getBindingResult(bindingResult);
+    public BaseResponse<UserDto> loginUser(String userEmail,String userPwd) throws Exception {
         return BaseResponseUtil.success(
-                userService.userLogin(user.getUserEmail(),user.getUserPwd()),
+                userService.userLogin(userEmail,userPwd),
                 "用户登录成功");
     }
 }

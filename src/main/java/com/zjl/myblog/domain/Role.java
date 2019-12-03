@@ -18,7 +18,7 @@ import java.util.Set;
 @Entity
 @Data
 @Table(name="tb_role")
-@ToString
+@ToString(exclude = {"users","actions"})
 public class Role implements Serializable {
     private static final long serialVersionUID = 8917044066759914275L;
 

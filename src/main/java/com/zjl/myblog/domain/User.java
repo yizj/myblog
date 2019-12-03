@@ -1,5 +1,6 @@
 package com.zjl.myblog.domain;
 
+import com.alibaba.fastjson.annotation.JSONField;
 import com.zjl.myblog.utils.ConstantUtils;
 import lombok.Data;
 import lombok.ToString;
@@ -21,7 +22,7 @@ import java.util.Set;
 @Entity
 @Table(name = "tb_user")
 @Data
-@ToString
+@ToString(exclude = {"roles"})
 public class User implements Serializable {
 
     private static final long serialVersionUID = -7629523597327671712L;
@@ -48,6 +49,7 @@ public class User implements Serializable {
     @Pattern(regexp = "^[1][3-9][0-9]{9}$", message = ConstantUtils.PHONEPATTERN)
     private String userPhone;
 
+    @JSONField(serialize = false)
     @ManyToMany(targetEntity = Role.class, cascade = CascadeType.ALL)
     @JoinTable(name = "tb_user_role",
             //当前对象在中间表中的外键
