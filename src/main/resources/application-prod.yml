@@ -23,7 +23,21 @@ spring:
         max-active: 8
         max-wait: -1ms
     timeout: 3000ms
-
+#activemq
+  activemq:
+    user: admin
+    password: admin
+    broker-url: tcp://101.200.61.210:61616
+    pool:
+      enabled: true
+      max-connections: 10
+      idle-timeout: 30000ms
+#邮箱配置
+ mail:
+   host: smtp.qq.com
+   username: 2506988720@qq.com
+   password: evuruylgyweddicg
+   default-encoding: UTF-8
 #日志配置
 logging:
   file:

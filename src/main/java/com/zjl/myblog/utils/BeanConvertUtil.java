@@ -275,6 +275,8 @@ public class BeanConvertUtil {
                             target.put(name, field);
                         }
                         break;
+                    default:
+                        target.put ( name, null );
                 }
             }
         }
