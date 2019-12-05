@@ -108,6 +108,10 @@
             <groupId>org.springframework.boot</groupId>
             <artifactId>spring-boot-starter-activemq</artifactId>
         </dependency>
+        <dependency>
+            <groupId>org.messaginghub</groupId>
+            <artifactId>pooled-jms</artifactId>
+        </dependency>
         <!-- 引入spring-boot-starter-mail依赖 -->
         <dependency>
             <groupId>org.springframework.boot</groupId>

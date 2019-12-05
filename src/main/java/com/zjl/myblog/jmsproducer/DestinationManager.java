@@ -1,4 +1,4 @@
-package com.zjl.myblog.jms;
+package com.zjl.myblog.jmsproducer;
 
 import javax.jms.Destination;
 /**

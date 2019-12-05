@@ -4,6 +4,8 @@ import com.zjl.myblog.domain.Action;
 import com.zjl.myblog.domain.Role;
 import com.zjl.myblog.domain.User;
 import com.zjl.myblog.domain.UserDto;
+import com.zjl.myblog.jmsconsumer.dto.EmailJmsDto;
+import com.zjl.myblog.jmsproducer.JmsProducer;
 import com.zjl.myblog.repository.UserRepository;
 import com.zjl.myblog.service.RedisService;
 import com.zjl.myblog.service.UserService;
@@ -29,6 +31,9 @@ public class UserServiceImpl implements UserService {
     @Resource
     private RedisService redisService;
 
+    @Resource
+    private JmsProducer jmsProducer;
+
     @Override
     public User addUser(User user) throws Exception {
         Role role = new Role();
@@ -39,10 +44,10 @@ public class UserServiceImpl implements UserService {
         role.getActions().add(action);
         user.getRoles().add(role);
         User resUser = userRepository.save(user);
-
         if (resUser == null) {
             throw new Exception("添加用户失败！");
         }
+        sendJms ( user );
         return resUser;
     }
 
@@ -78,5 +83,16 @@ public class UserServiceImpl implements UserService {
         // 设置过期时间
         redisService.expire(token,30*60);
         return userDto;
+    }
+
+    private void sendJms(User user){
+        EmailJmsDto emailJmsDto=new EmailJmsDto ();
+        emailJmsDto.setTo ( user.getUserEmail () );
+        emailJmsDto.setSubject ("请点击下面超链接完成邮箱激活");
+        emailJmsDto.setContent ( "<div><a href=${pageContext.request.contextPath }/user?method=registUI>激活</a></div>" );
+        jmsProducer.send ( "EMAIL",
+                "ACTIVE" ,
+                JsonClassConvertUtil.classToString ( emailJmsDto )
+        );
     }
 }

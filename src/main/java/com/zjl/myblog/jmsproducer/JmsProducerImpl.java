@@ -1,4 +1,4 @@
-package com.zjl.myblog.jms;
+package com.zjl.myblog.jmsproducer;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.jms.core.JmsMessagingTemplate;
@@ -14,16 +14,12 @@ import javax.jms.Destination;
  */
 @Service
 public class JmsProducerImpl implements JmsProducer {
-    private final DestinationManager destinationManager;
-
-    private final JmsMessagingTemplate jmsTemplate;
 
     @Autowired
-    public JmsProducerImpl(DestinationManager destinationManager, JmsMessagingTemplate jmsTemplate) {
-        super ( );
-        this.destinationManager = destinationManager;
-        this.jmsTemplate = jmsTemplate;
-    }
+    private  DestinationManager destinationManager;
+
+    @Autowired
+    private  JmsMessagingTemplate jmsTemplate;
 
     @Override
     public void send(String type, String step, String message) {

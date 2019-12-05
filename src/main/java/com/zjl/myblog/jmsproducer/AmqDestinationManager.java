@@ -1,4 +1,4 @@
-package com.zjl.myblog.jms;
+package com.zjl.myblog.jmsproducer;
 
 import org.apache.activemq.command.ActiveMQQueue;
 import org.springframework.stereotype.Service;
