@@ -1,5 +1,6 @@
 package com.zjl.myblog.jmsproducer;
 
+import com.zjl.myblog.annotation.Log;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.jms.core.JmsMessagingTemplate;
 import org.springframework.stereotype.Service;
@@ -22,6 +23,7 @@ public class JmsProducerImpl implements JmsProducer {
     private  JmsMessagingTemplate jmsTemplate;
 
     @Override
+    @Log("消息发送")
     public void send(String type, String step, String message) {
         Destination destination = destinationManager.getDestination ( type, step );
         jmsTemplate.convertAndSend ( destination, message );

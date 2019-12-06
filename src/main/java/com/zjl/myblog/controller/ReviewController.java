@@ -1,5 +1,6 @@
 package com.zjl.myblog.controller;
 
+import com.zjl.myblog.annotation.Log;
 import com.zjl.myblog.api.BaseResponse;
 import com.zjl.myblog.domain.Review;
 import com.zjl.myblog.service.ReviewService;
@@ -30,6 +31,7 @@ public class ReviewController {
     @Autowired
     private ReviewService reviewService;
 
+    @Log("发布文章")
     @ApiOperation ( value = "发布文章评论",notes = "POST请求")
     @PostMapping
     @ApiImplicitParam(paramType = "path" ,required = true)

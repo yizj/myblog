@@ -29,6 +29,12 @@ public class LogAspect {
     public void pc() {
 
     }
+    /**
+     * 将Log标识的方法进行切面
+     */
+    @Pointcut("@annotation(com.zjl.myblog.annotation.Log)")
+    public void logAsppect() {
+    }
 
     /**
      * @Description: TODO
@@ -36,11 +42,11 @@ public class LogAspect {
      * @Param:
      * @Return:
      */
-    @Before(value = "pc()")
+    @Before(value = "pc()||logAsppect()")
     public void before(JoinPoint joinPoint) {
         String name = joinPoint.getSignature().getName();
         Object[] objects = joinPoint.getArgs();
-        LogUtil.info(LogAspect.class, "开始执行{0}方法,时间是{1}", name, dateFormatUtil.format(new Date(), DateFormatUtil.yyyyMMddHHmmss_H));
+        LogUtil.info(LogAspect.class, "开始执行{0}方法", name);
         LogUtil.info(LogAspect.class, "参数是:{0}", objects);
     }
 
@@ -50,10 +56,10 @@ public class LogAspect {
      * @Param:
      * @Return:
      */
-    @After(value = "pc()")
+    @After(value = "pc()||logAsppect()")
     public void after(JoinPoint joinPoint) {
         String name = joinPoint.getSignature().getName();
-        LogUtil.info(LogAspect.class, "结束执行{0}方法，时间是{1}", name, dateFormatUtil.format(new Date(), DateFormatUtil.yyyyMMddHHmmss_H));
+        LogUtil.info(LogAspect.class, "结束执行{0}方法", name);
     }
 
     /**
@@ -74,7 +80,7 @@ public class LogAspect {
      * @Param:
      * @Return:
      */
-    @AfterThrowing(value = "pc()", throwing = "e")
+    @AfterThrowing(value = "pc()||logAsppect()", throwing = "e")
     public void afterThrowing(JoinPoint joinPoint, Exception e) {
         String name = joinPoint.getSignature().getName();
         LogUtil.error(LogAspect.class, "方法{0}抛出了异常，异常是：{1}", name, e);

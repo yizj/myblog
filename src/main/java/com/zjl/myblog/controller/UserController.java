@@ -1,5 +1,6 @@
 package com.zjl.myblog.controller;
 
+import com.zjl.myblog.annotation.Log;
 import com.zjl.myblog.api.BaseResponse;
 import com.zjl.myblog.domain.User;
 import com.zjl.myblog.domain.UserDto;
@@ -27,6 +28,7 @@ public class UserController {
     @Autowired
     private UserService userService;
 
+    @Log("用户注册")
     @ApiOperation(value = "添加用户",notes = "post请求")
     @ApiImplicitParam(paramType = "path",required = true)
     @PostMapping
@@ -36,6 +38,7 @@ public class UserController {
         return BaseResponseUtil.success(userService.addUser(user),"添加用户成功");
     }
 
+    @Log("用户登录")
     @ApiOperation(value = "用户登录",notes = "get请求")
     @ApiImplicitParam(paramType = "path",required = true)
     @GetMapping

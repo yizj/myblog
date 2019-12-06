@@ -1,5 +1,6 @@
 package com.zjl.myblog.controller;
 
+import com.zjl.myblog.annotation.Log;
 import com.zjl.myblog.api.BaseResponse;
 import com.zjl.myblog.domain.User;
 import com.zjl.myblog.service.UserService;
@@ -29,6 +30,7 @@ public class AdminController {
     @Autowired
     private UserService userService;
 
+    @Log("管理员注册")
     @ApiOperation(value = "添加管理员", notes = "post请求")
     @ApiImplicitParam(paramType = "path", required = true)
     @PostMapping

@@ -1,5 +1,6 @@
 package com.zjl.myblog.controller;
 
+import com.zjl.myblog.annotation.Log;
 import com.zjl.myblog.api.BaseResponse;
 import com.zjl.myblog.domain.Role;
 import com.zjl.myblog.service.RoleService;
@@ -33,6 +34,7 @@ public class RoleController {
     @ApiOperation(value = "添加角色",notes = "post请求")
     @ApiImplicitParam(paramType = "path",name = "roleName",value="角色名称",required =true )
     @PostMapping
+    @Log("角色添加")
     public BaseResponse<Role> addRole(@RequestBody @Validated Role role, BindingResult bindingResult) throws Exception
     {
         //校验参数

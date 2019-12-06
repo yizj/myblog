@@ -1,5 +1,6 @@
 package com.zjl.myblog.controller;
 
+import com.zjl.myblog.annotation.Log;
 import com.zjl.myblog.api.BaseResponse;
 import com.zjl.myblog.domain.Article;
 import com.zjl.myblog.service.ArticleService;
@@ -24,6 +25,7 @@ public class ArticleController {
     @Autowired
     private ArticleService articleService;
 
+    @Log("添加文章")
     @ApiOperation(value = "发布文章",notes = "post请求")
     @ApiImplicitParam(paramType = "path",required = true)
     @PostMapping

@@ -36,10 +36,19 @@ public class LogUtil {
 	 * @param params
 	 */
 	public static void info(Class<?> clazz, String context, Object... params) {
+		StringBuffer stringBuffer=new StringBuffer();
 		Logger log = LoggerFactory.getLogger(clazz);
 		if(null == params || params.length == 0){
 			log.info(context);
-		}else{
+		}
+		if(params instanceof Object[]&&params.length>1){
+			for(Object object:params){
+				stringBuffer.append ( object );
+				stringBuffer.append ( "," );
+			}
+			log.info(MessageFormat.format(context, stringBuffer.toString ()));
+		}
+		else {
 			log.info(MessageFormat.format(context, params));
 		}
 	}

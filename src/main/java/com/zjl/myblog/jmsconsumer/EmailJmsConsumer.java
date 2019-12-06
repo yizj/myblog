@@ -1,5 +1,6 @@
 package com.zjl.myblog.jmsconsumer;
 
+import com.zjl.myblog.annotation.Log;
 import com.zjl.myblog.jmsconsumer.dto.EmailJmsDto;
 import com.zjl.myblog.service.MailService;
 import com.zjl.myblog.utils.JsonClassConvertUtil;
@@ -21,6 +22,7 @@ public class EmailJmsConsumer {
     @Autowired
     private MailService mailService;
 
+    @Log("邮件消费者")
     @JmsListener ( destination = "EMAIL-ACTIVE",concurrency = "8")
     public void sendEmail(String jmsJson) throws MessagingException {
         EmailJmsDto emailJmsDto=JsonClassConvertUtil.stringToBean ( jmsJson,EmailJmsDto.class );

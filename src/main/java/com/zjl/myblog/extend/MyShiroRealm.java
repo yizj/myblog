@@ -1,8 +1,8 @@
 package com.zjl.myblog.extend;
 
+import com.zjl.myblog.annotation.Log;
 import com.zjl.myblog.domain.User;
 import com.zjl.myblog.repository.UserRepository;
-import com.zjl.myblog.utils.LogUtil;
 import org.apache.shiro.authc.*;
 import org.apache.shiro.authz.AuthorizationInfo;
 import org.apache.shiro.realm.AuthorizingRealm;
@@ -25,10 +25,10 @@ public class MyShiroRealm extends AuthorizingRealm {
         return null;
     }
 
+    @Log("认证")
     @Override
     protected AuthenticationInfo doGetAuthenticationInfo(AuthenticationToken authenticationToken) throws AuthenticationException {
         UsernamePasswordToken token = (UsernamePasswordToken) authenticationToken;
-        LogUtil.info(MyShiroRealm.class, "开始执行认证方法:参数是{0}", token);
         User user = userRepository.findByUserEmail(token.getUsername());
         String name = authenticationToken.getPrincipal().toString();
         if (user == null) {
