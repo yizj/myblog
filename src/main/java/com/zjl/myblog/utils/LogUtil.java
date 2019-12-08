@@ -38,13 +38,14 @@ public class LogUtil {
 	public static void info(Class<?> clazz, String context, Object... params) {
 		StringBuffer stringBuffer=new StringBuffer();
 		Logger log = LoggerFactory.getLogger(clazz);
+		String delim="";
 		if(null == params || params.length == 0){
 			log.info(context);
 		}
 		if(params instanceof Object[]&&params.length>1){
 			for(Object object:params){
-				stringBuffer.append ( object );
-				stringBuffer.append ( "," );
+				stringBuffer.append(delim).append ( object );
+				delim=",";
 			}
 			log.info(MessageFormat.format(context, stringBuffer.toString ()));
 		}
@@ -52,7 +53,21 @@ public class LogUtil {
 			log.info(MessageFormat.format(context, params));
 		}
 	}
-	
+
+	/**
+	 * info级别
+	 * @param clazz
+	 * @param context 可用占位符，如：{0}
+	 * @param params
+	 */
+	public static void mulinfo(Class<?> clazz, String context, Object... params) {
+		Logger log = LoggerFactory.getLogger(clazz);
+		if(null == params || params.length == 0){
+			log.info(context);
+		}
+		log.info(MessageFormat.format(context, params));
+	}
+
 	/**
 	 * warn级别
 	 * @param clazz

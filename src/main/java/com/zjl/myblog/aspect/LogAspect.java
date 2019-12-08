@@ -6,8 +6,6 @@ import org.aspectj.lang.JoinPoint;
 import org.aspectj.lang.annotation.*;
 import org.springframework.stereotype.Component;
 
-import java.util.Date;
-
 /**
  * @Author:jlzhang
  * @Description: 用AOP记录日志
@@ -71,7 +69,7 @@ public class LogAspect {
     @AfterReturning(value = "pc()", returning = "result")
     public void afterReturning(JoinPoint joinPoint, Object result) {
         String name = joinPoint.getSignature().getName();
-        LogUtil.info(LogAspect.class, "方法{0}的返回值是：{1}", name, result);
+        LogUtil.mulinfo(LogAspect.class, "方法{0}的返回值是：{1}", name, result);
     }
 
     /**

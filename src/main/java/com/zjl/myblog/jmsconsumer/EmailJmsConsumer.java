@@ -23,12 +23,13 @@ public class EmailJmsConsumer {
     private MailService mailService;
 
     @Log("邮件消费者")
-    @JmsListener ( destination = "EMAIL-ACTIVE",concurrency = "8")
-    public void sendEmail(String jmsJson) throws MessagingException {
+    @JmsListener ( destination = "EMAIL-ACTIVE")
+    public void sendEmail(String jmsJson) throws MessagingException, InterruptedException {
         EmailJmsDto emailJmsDto=JsonClassConvertUtil.stringToBean ( jmsJson,EmailJmsDto.class );
         mailService.sendHtmlMail ( emailJmsDto.getTo (),
                 emailJmsDto.getSubject (),
                 emailJmsDto.getContent ()
         );
+        Thread.sleep(5000);
     }
 }
