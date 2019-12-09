@@ -10,6 +10,7 @@ import com.zjl.myblog.repository.UserRepository;
 import com.zjl.myblog.service.RedisService;
 import com.zjl.myblog.service.UserService;
 import com.zjl.myblog.utils.BeanConvertUtil;
+import com.zjl.myblog.utils.ConstantUtils;
 import com.zjl.myblog.utils.JsonClassConvertUtil;
 import org.springframework.stereotype.Service;
 
@@ -88,10 +89,10 @@ public class UserServiceImpl implements UserService {
     private void sendJms(User user){
         EmailJmsDto emailJmsDto=new EmailJmsDto ();
         emailJmsDto.setTo ( user.getUserEmail () );
-        emailJmsDto.setSubject ("请点击下面超链接完成邮箱激活");
-        emailJmsDto.setContent ( "<div><a href=${pageContext.request.contextPath }/user?method=registUI>激活</a></div>" );
-        jmsProducer.send ( "EMAIL",
-                "ACTIVE" ,
+        emailJmsDto.setSubject (ConstantUtils.EMAIL_SUBJECT );
+        emailJmsDto.setContent (ConstantUtils.EMAIL_CONTENT );
+        jmsProducer.send ( ConstantUtils.EMAIL_TYPE,
+                ConstantUtils.EMAIL_STEP ,
                 JsonClassConvertUtil.classToString ( emailJmsDto )
         );
     }

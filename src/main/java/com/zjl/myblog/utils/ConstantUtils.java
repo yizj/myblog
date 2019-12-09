@@ -37,5 +37,12 @@ public class ConstantUtils {
 
     public static final String PHONEPATTERN = "手机号码格式不正确";
 
+    public static final String EMAIL_SUBJECT="请点击下面超链接完成邮箱激活";
+
+    public static final String EMAIL_CONTENT="<div><a href=${pageContext.request.contextPath }/user?method=registUI>激活</a></div>" ;
+
+    public static final String EMAIL_TYPE="EMAIL";
+
+    public static final String EMAIL_STEP="ACTIVE";
 
 }
