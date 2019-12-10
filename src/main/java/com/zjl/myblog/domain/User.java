@@ -32,21 +32,21 @@ public class User implements Serializable {
     private Integer id;
 
     @Column(name = "user_name")
-    @NotNull(message = ConstantUtils.USERNAMENOTNULL)
-    @Size(min = 6, max = 20, message = ConstantUtils.USERNAMESIZE)
+    @NotNull(message = ConstantUtils.USER_NAME_NOTNULL)
+    @Size(min = 6, max = 20, message = ConstantUtils.USER_NAME_SIZE)
     private String userName;
 
     @Column(name = "user_pwd")
     private String userPwd;
 
     @Column(name = "user_email")
-    @Email(message = ConstantUtils.EMAILPATTERN)
-    @NotNull(message = ConstantUtils.EMAILNOTNULL)
+    @Email(message = ConstantUtils.EMAIL_PATTERN)
+    @NotNull(message = ConstantUtils.EMAIL_NOTNULL)
     private String userEmail;
 
     @Column(name = "user_phone")
-    @NotNull(message = ConstantUtils.PHONENOTNULL)
-    @Pattern(regexp = "^[1][3-9][0-9]{9}$", message = ConstantUtils.PHONEPATTERN)
+    @NotNull(message = ConstantUtils.PHONE_NOTNULL)
+    @Pattern(regexp = "^[1][3-9][0-9]{9}$", message = ConstantUtils.PHONE_PATTERN)
     private String userPhone;
 
     @JSONField(serialize = false)

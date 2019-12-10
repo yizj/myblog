@@ -19,6 +19,6 @@ public class GlobalExceptionHandler {
     @ExceptionHandler(Exception.class)
     public BaseResponse handleException(Exception e)
     {
-        return BaseResponseUtil.error(e.getLocalizedMessage(), ConstantUtils.ERRORCODE);
+        return BaseResponseUtil.error(e.getLocalizedMessage(), ConstantUtils.ERROR_CODE);
     }
 }

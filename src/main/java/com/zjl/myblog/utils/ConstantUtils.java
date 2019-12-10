@@ -8,38 +8,33 @@ package com.zjl.myblog.utils;
 public class ConstantUtils {
 
     /**
+     * 消息成功码
+     */
+    public static final Integer SUCCESS_CODE= 200;
+    /**
      * 消息错误码
      */
-    public static final Integer ERRORCODE = 100;
-
-    /**
-     * 消息成功碼
-     */
-    public static final Integer SUCCESSCODE = 200;
+    public static final Integer ERROR_CODE = 100;
     /**
      * role验证消息
      */
-    public static final String ROLEPATTERN = "角色名不能为空";
+    public static final String ROLE_PATTERN = "角色名不能为空";
     /**
      * user验证消息
      */
-    public static final String USERNAMENOTNULL = "用户名不能为空";
+    public static final String USER_NAME_NOTNULL = "用户名不能为空";
 
-    public static final String USERNAMESIZE = "用户名应该在六位与二十位之间";
+    public static final String USER_NAME_SIZE = "用户名应该在六位与二十位之间";
 
-    public static final String PWD = "密码应该在六位与二十位之间";
+    public static final String EMAIL_NOTNULL = "邮箱不能为空";
 
-    public static final String EMAILNOTNULL = "邮箱不能为空";
+    public static final String EMAIL_PATTERN = "邮箱格式不正确";
 
-    public static final String EMAILPATTERN = "邮箱格式不正确";
+    public static final String PHONE_NOTNULL = "手机号码不能为空";
 
-    public static final String PHONENOTNULL = "手机号码不能为空";
-
-    public static final String PHONEPATTERN = "手机号码格式不正确";
+    public static final String PHONE_PATTERN = "手机号码格式不正确";
 
     public static final String EMAIL_SUBJECT="请点击下面超链接完成邮箱激活";
-
-    public static final String EMAIL_CONTENT="<div><a href=${pageContext.request.contextPath }/user?method=registUI>激活</a></div>" ;
 
     public static final String EMAIL_TYPE="EMAIL";
 

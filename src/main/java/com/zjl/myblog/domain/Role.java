@@ -27,7 +27,7 @@ public class Role implements Serializable {
     private Integer id;
 
     @Column(name = "role_name")
-    @NotNull(message = ConstantUtils.ROLEPATTERN)
+    @NotNull(message = ConstantUtils.ROLE_PATTERN)
     private String roleName;
 
     @ManyToMany(mappedBy="roles")

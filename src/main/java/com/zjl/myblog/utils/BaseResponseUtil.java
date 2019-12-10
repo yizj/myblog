@@ -11,7 +11,7 @@ public class BaseResponseUtil {
 
     public static BaseResponse success(Object object, String msg) {
         BaseResponse baseResponse = new BaseResponse();
-        baseResponse.setCode(ConstantUtils.SUCCESSCODE);
+        baseResponse.setCode(ConstantUtils.SUCCESS_CODE);
         baseResponse.setMsg(msg);
         baseResponse.setData(object);
         return baseResponse;

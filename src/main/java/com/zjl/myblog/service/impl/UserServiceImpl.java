@@ -13,6 +13,8 @@ import com.zjl.myblog.utils.BeanConvertUtil;
 import com.zjl.myblog.utils.ConstantUtils;
 import com.zjl.myblog.utils.JsonClassConvertUtil;
 import org.springframework.stereotype.Service;
+import org.thymeleaf.TemplateEngine;
+import org.thymeleaf.context.Context;
 
 import javax.annotation.Resource;
 import java.util.List;
@@ -34,6 +36,9 @@ public class UserServiceImpl implements UserService {
 
     @Resource
     private JmsProducer jmsProducer;
+
+    @Resource
+    private TemplateEngine templateEngine;
 
     @Override
     public User addUser(User user) throws Exception {
@@ -87,10 +92,14 @@ public class UserServiceImpl implements UserService {
     }
 
     private void sendJms(User user){
+        Context context=new Context();
+        context.setVariable("username",user.getUserName());
+        context.setVariable("phone",user.getUserPhone());
+        String mail=templateEngine.process("mailtemplate.html",context);
         EmailJmsDto emailJmsDto=new EmailJmsDto ();
         emailJmsDto.setTo ( user.getUserEmail () );
         emailJmsDto.setSubject (ConstantUtils.EMAIL_SUBJECT );
-        emailJmsDto.setContent (ConstantUtils.EMAIL_CONTENT );
+        emailJmsDto.setContent (mail );
         jmsProducer.send ( ConstantUtils.EMAIL_TYPE,
                 ConstantUtils.EMAIL_STEP ,
                 JsonClassConvertUtil.classToString ( emailJmsDto )

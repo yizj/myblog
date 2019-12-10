@@ -1,0 +1,17 @@
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>邮件</title>
+</head>
+<body>
+    <div>邮箱激活</div>
+    <div>
+        <p>您的注册信息是：</p>
+        <p>用户名:<span th:text="${username}"></span></p>
+        <p>手机号:<span th:text="${phone}"></span></p>
+    </div>
+    <div>
+        <a href="">核对无误后请点击本链接激活邮箱</a>
+    </div>
+</body>
+</html>

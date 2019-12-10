@@ -14,6 +14,7 @@ import java.io.Serializable;
 @ToString
 public class BaseResponse<T> implements Serializable {
 
+    private static final long serialVersionUID = 5231149907601109098L;
     /**返回信息提示*/
     private String msg;
 
