@@ -16,7 +16,7 @@ import java.io.Serializable;
 @Table(name = "tb_articletype")
 @Data
 @ToString
-public class ArticleType implements Serializable {
+public class ArticleTypeDO implements Serializable {
     private static final long serialVersionUID = -2459104959437545431L;
 
     @Id

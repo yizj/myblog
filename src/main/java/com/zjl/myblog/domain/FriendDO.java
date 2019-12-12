@@ -15,7 +15,7 @@ import java.io.Serializable;
 @Data
 @Table(name = "tb_friend")
 @ToString
-public class Friend implements Serializable {
+public class FriendDO implements Serializable {
     private static final long serialVersionUID = 5591440628416674493L;
 
     @Id

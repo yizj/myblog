@@ -15,7 +15,7 @@ import java.io.Serializable;
 @ToString
 @Table(name = "tb_photo")
 @Data
-public class Photo implements Serializable {
+public class PhotoDO implements Serializable {
     private static final long serialVersionUID = 8493191393416980345L;
 
     @Id

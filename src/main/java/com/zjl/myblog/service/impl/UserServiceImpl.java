@@ -1,17 +1,17 @@
 package com.zjl.myblog.service.impl;
 
-import com.zjl.myblog.domain.Action;
-import com.zjl.myblog.domain.Role;
-import com.zjl.myblog.domain.User;
-import com.zjl.myblog.domain.UserDto;
+import com.zjl.myblog.constant.ServiceConsts;
+import com.zjl.myblog.domain.ActionDO;
+import com.zjl.myblog.domain.RoleDO;
+import com.zjl.myblog.domain.UserDO;
+import com.zjl.myblog.dto.UserDto;
 import com.zjl.myblog.jmsconsumer.dto.EmailJmsDto;
 import com.zjl.myblog.jmsproducer.JmsProducer;
 import com.zjl.myblog.repository.UserRepository;
 import com.zjl.myblog.service.RedisService;
 import com.zjl.myblog.service.UserService;
-import com.zjl.myblog.utils.BeanConvertUtil;
-import com.zjl.myblog.utils.ConstantUtils;
-import com.zjl.myblog.utils.JsonClassConvertUtil;
+import com.zjl.myblog.util.BeanConvertUtil;
+import com.zjl.myblog.util.JsonClassConvertUtil;
 import org.springframework.stereotype.Service;
 import org.thymeleaf.TemplateEngine;
 import org.thymeleaf.context.Context;
@@ -41,15 +41,15 @@ public class UserServiceImpl implements UserService {
     private TemplateEngine templateEngine;
 
     @Override
-    public User addUser(User user) throws Exception {
-        Role role = new Role();
-        Action action = new Action();
+    public UserDO addUser(UserDO user) throws Exception {
+        RoleDO role = new RoleDO ();
+        ActionDO action = new ActionDO ();
         action.setActiobUrl("/admin");
         action.setActionName("普通用户权限");
         role.setRoleName("ROLE_USER");
-        role.getActions().add(action);
-        user.getRoles().add(role);
-        User resUser = userRepository.save(user);
+        role.getActionDOS ().add(action);
+        user.getRoleDOS ().add(role);
+        UserDO resUser = userRepository.save(user);
         if (resUser == null) {
             throw new Exception("添加用户失败！");
         }
@@ -58,8 +58,8 @@ public class UserServiceImpl implements UserService {
     }
 
     @Override
-    public List<User> addUsers(List<User> users) throws Exception {
-        List<User> resUsers = userRepository.saveAll(users);
+    public List<UserDO> addUsers(List<UserDO> users) throws Exception {
+        List<UserDO> resUsers = userRepository.saveAll(users);
         if (resUsers == null || resUsers.size() == 0) {
             throw new Exception("添加多个用户失败！");
         }
@@ -73,7 +73,7 @@ public class UserServiceImpl implements UserService {
       */
     @Override
     public UserDto userLogin(String userEmail, String userPwd) {
-        User user=userRepository.findUserByUserEmailAndUserPwd (userEmail, userPwd );
+        UserDO user=userRepository.findUserByUserEmailAndUserPwd (userEmail, userPwd );
         if (user == null) {
             throw new RuntimeException ( "该用户不存在，请核对用户名密码是否正确" );
         }
@@ -91,17 +91,17 @@ public class UserServiceImpl implements UserService {
         return userDto;
     }
 
-    private void sendJms(User user){
+    private void sendJms(UserDO user){
         Context context=new Context();
         context.setVariable("username",user.getUserName());
         context.setVariable("phone",user.getUserPhone());
         String mail=templateEngine.process("mailtemplate.html",context);
         EmailJmsDto emailJmsDto=new EmailJmsDto ();
         emailJmsDto.setTo ( user.getUserEmail () );
-        emailJmsDto.setSubject (ConstantUtils.EMAIL_SUBJECT );
+        emailJmsDto.setSubject (ServiceConsts.EMAIL_SUBJECT );
         emailJmsDto.setContent (mail );
-        jmsProducer.send ( ConstantUtils.EMAIL_TYPE,
-                ConstantUtils.EMAIL_STEP ,
+        jmsProducer.send ( ServiceConsts.EMAIL_TYPE,
+                ServiceConsts.EMAIL_STEP ,
                 JsonClassConvertUtil.classToString ( emailJmsDto )
         );
     }

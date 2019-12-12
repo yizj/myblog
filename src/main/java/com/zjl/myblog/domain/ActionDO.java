@@ -15,8 +15,8 @@ import java.util.Set;
 @Entity
 @Table(name = "tb_action")
 @Data
-@ToString(exclude = {"roles"})
-public class Action implements Serializable {
+@ToString(exclude = {"roleDOS"})
+public class ActionDO implements Serializable {
 
     private static final long serialVersionUID = -4966720157938737838L;
 
@@ -33,6 +33,6 @@ public class Action implements Serializable {
     @Column(name = "action_name")
     private String actionName;
 
-    @ManyToMany(mappedBy = "actions",fetch = FetchType.EAGER)
-    private Set<Role> roles;
+    @ManyToMany(mappedBy = "actionDOS",fetch = FetchType.EAGER)
+    private Set<RoleDO> roleDOS;
 }

@@ -1,8 +1,8 @@
 package com.zjl.myblog.global;
 
 import com.zjl.myblog.api.BaseResponse;
-import com.zjl.myblog.utils.BaseResponseUtil;
-import com.zjl.myblog.utils.ConstantUtils;
+import com.zjl.myblog.constant.ViewConsts;
+import com.zjl.myblog.util.BaseResponseUtil;
 import org.springframework.web.bind.annotation.ExceptionHandler;
 import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.bind.annotation.RestControllerAdvice;
@@ -19,6 +19,6 @@ public class GlobalExceptionHandler {
     @ExceptionHandler(Exception.class)
     public BaseResponse handleException(Exception e)
     {
-        return BaseResponseUtil.error(e.getLocalizedMessage(), ConstantUtils.ERROR_CODE);
+        return BaseResponseUtil.error(e.getLocalizedMessage(),ViewConsts.ERROR_CODE);
     }
 }

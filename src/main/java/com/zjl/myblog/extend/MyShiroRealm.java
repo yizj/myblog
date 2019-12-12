@@ -1,7 +1,7 @@
 package com.zjl.myblog.extend;
 
 import com.zjl.myblog.annotation.Log;
-import com.zjl.myblog.domain.User;
+import com.zjl.myblog.domain.UserDO;
 import com.zjl.myblog.repository.UserRepository;
 import org.apache.shiro.authc.*;
 import org.apache.shiro.authz.AuthorizationInfo;
@@ -29,7 +29,7 @@ public class MyShiroRealm extends AuthorizingRealm {
     @Override
     protected AuthenticationInfo doGetAuthenticationInfo(AuthenticationToken authenticationToken) throws AuthenticationException {
         UsernamePasswordToken token = (UsernamePasswordToken) authenticationToken;
-        User user = userRepository.findByUserEmail(token.getUsername());
+        UserDO user = userRepository.findByUserEmail(token.getUsername());
         String name = authenticationToken.getPrincipal().toString();
         if (user == null) {
             return null;

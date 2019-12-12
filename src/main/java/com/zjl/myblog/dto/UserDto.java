@@ -1,7 +1,7 @@
-package com.zjl.myblog.domain;
+package com.zjl.myblog.dto;
 
+import com.zjl.myblog.domain.UserDO;
 import lombok.Data;
-import lombok.ToString;
 
 /**
  * @author JLZHANG
@@ -10,7 +10,6 @@ import lombok.ToString;
  * @function: TODO
  */
 @Data
-@ToString
-public class UserDto extends User {
+public class UserDto extends UserDO {
     private String token;
 }

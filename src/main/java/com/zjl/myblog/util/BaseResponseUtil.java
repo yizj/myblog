@@ -1,6 +1,7 @@
-package com.zjl.myblog.utils;
+package com.zjl.myblog.util;
 
 import com.zjl.myblog.api.BaseResponse;
+import com.zjl.myblog.constant.ViewConsts;
 
 /**
  * @author zjl
@@ -11,7 +12,7 @@ public class BaseResponseUtil {
 
     public static BaseResponse success(Object object, String msg) {
         BaseResponse baseResponse = new BaseResponse();
-        baseResponse.setCode(ConstantUtils.SUCCESS_CODE);
+        baseResponse.setCode(ViewConsts.SUCCESS_CODE);
         baseResponse.setMsg(msg);
         baseResponse.setData(object);
         return baseResponse;

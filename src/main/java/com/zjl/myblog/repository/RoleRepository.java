@@ -1,11 +1,11 @@
 package com.zjl.myblog.repository;
 
-import com.zjl.myblog.domain.Role;
+import com.zjl.myblog.domain.RoleDO;
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.stereotype.Repository;
 
 @Repository
-public interface RoleRepository extends JpaRepository<Role, Integer> {
+public interface RoleRepository extends JpaRepository<RoleDO, Integer> {
 
-    Role findByRoleName(String roleName);
+    RoleDO findByRoleName(String roleName);
 }

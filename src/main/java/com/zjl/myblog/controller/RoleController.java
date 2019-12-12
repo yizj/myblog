@@ -2,14 +2,13 @@ package com.zjl.myblog.controller;
 
 import com.zjl.myblog.annotation.Log;
 import com.zjl.myblog.api.BaseResponse;
-import com.zjl.myblog.domain.Role;
+import com.zjl.myblog.domain.RoleDO;
 import com.zjl.myblog.service.RoleService;
-import com.zjl.myblog.utils.BaseResponseUtil;
-import com.zjl.myblog.utils.ValidatedUtils;
+import com.zjl.myblog.util.BaseResponseUtil;
+import com.zjl.myblog.util.ValidatedUtil;
 import io.swagger.annotations.Api;
 import io.swagger.annotations.ApiImplicitParam;
 import io.swagger.annotations.ApiOperation;
-import io.swagger.annotations.ApiParam;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.validation.BindingResult;
 import org.springframework.validation.annotation.Validated;
@@ -35,10 +34,10 @@ public class RoleController {
     @ApiImplicitParam(paramType = "path",name = "roleName",value="角色名称",required =true )
     @PostMapping
     @Log("角色添加")
-    public BaseResponse<Role> addRole(@RequestBody @Validated Role role, BindingResult bindingResult) throws Exception
+    public BaseResponse<RoleDO> addRole(@RequestBody @Validated RoleDO role, BindingResult bindingResult) throws Exception
     {
         //校验参数
-        ValidatedUtils.getBindingResult(bindingResult);
+        ValidatedUtil.getBindingResult(bindingResult);
         return BaseResponseUtil.success(roleService.addRole(role),"添加角色成功");
     }
 }

@@ -3,7 +3,7 @@ package com.zjl.myblog.jmsconsumer;
 import com.zjl.myblog.annotation.Log;
 import com.zjl.myblog.jmsconsumer.dto.EmailJmsDto;
 import com.zjl.myblog.service.MailService;
-import com.zjl.myblog.utils.JsonClassConvertUtil;
+import com.zjl.myblog.util.JsonClassConvertUtil;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.jms.annotation.JmsListener;
 import org.springframework.stereotype.Service;

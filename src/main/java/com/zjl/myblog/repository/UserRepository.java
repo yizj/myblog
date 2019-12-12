@@ -1,17 +1,17 @@
 package com.zjl.myblog.repository;
 
-import com.zjl.myblog.domain.User;
+import com.zjl.myblog.domain.UserDO;
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.stereotype.Repository;
 
 @Repository
-public interface UserRepository extends JpaRepository<User, Integer> {
+public interface UserRepository extends JpaRepository<UserDO, Integer> {
 
-    User findByUserPhone(String userPhone);
+    UserDO findByUserPhone(String userPhone);
 
-    User findByUserEmail(String userEmail);
+    UserDO findByUserEmail(String userEmail);
 
-    User findByUserName(String userName);
+    UserDO findByUserName(String userName);
 
-    User findUserByUserEmailAndUserPwd(String userEmail,String userPwd);
+    UserDO findUserByUserEmailAndUserPwd(String userEmail, String userPwd);
 }

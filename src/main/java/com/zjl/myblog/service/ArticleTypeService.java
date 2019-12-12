@@ -1,8 +1,8 @@
 package com.zjl.myblog.service;
 
-import com.zjl.myblog.domain.ArticleType;
+import com.zjl.myblog.domain.ArticleTypeDO;
 
 public interface ArticleTypeService {
 
-    ArticleType addArticleType(ArticleType articleType) throws Exception;
+    ArticleTypeDO addArticleType(ArticleTypeDO articleType) throws Exception;
 }

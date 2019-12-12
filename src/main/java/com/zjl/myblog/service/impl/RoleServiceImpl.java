@@ -1,6 +1,6 @@
 package com.zjl.myblog.service.impl;
 
-import com.zjl.myblog.domain.Role;
+import com.zjl.myblog.domain.RoleDO;
 import com.zjl.myblog.repository.RoleRepository;
 import com.zjl.myblog.service.RoleService;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -21,8 +21,8 @@ public class RoleServiceImpl implements RoleService {
      * @Return: Role
      */
     @Override
-    public Role addRole(Role role) throws Exception {
-        Role resRole = roleRepository.save(role);
+    public RoleDO addRole(RoleDO role) throws Exception {
+        RoleDO resRole = roleRepository.save(role);
         if (resRole == null) {
             throw new Exception("添加角色失败！");
         }
@@ -36,8 +36,8 @@ public class RoleServiceImpl implements RoleService {
      * @Return: List<Role>
      */
     @Override
-    public List<Role> addRoles(List<Role> roles) throws Exception {
-        List<Role> resRoles = roleRepository.saveAll(roles);
+    public List<RoleDO> addRoles(List<RoleDO> roles) throws Exception {
+        List<RoleDO> resRoles = roleRepository.saveAll(roles);
         if (resRoles == null || resRoles.size() == 0) {
             throw new Exception("添加多个角色失败！");
         }

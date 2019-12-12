@@ -1,6 +1,6 @@
 package com.zjl.myblog.domain;
 
-import com.zjl.myblog.utils.ConstantUtils;
+import com.zjl.myblog.constant.ErrorConsts;
 import lombok.Data;
 import lombok.ToString;
 
@@ -18,8 +18,7 @@ import java.util.Set;
 @Entity
 @Data
 @Table(name="tb_role")
-@ToString(exclude = {"users","actions"})
-public class Role implements Serializable {
+public class RoleDO implements Serializable {
     private static final long serialVersionUID = 8917044066759914275L;
 
     @Id
@@ -27,16 +26,16 @@ public class Role implements Serializable {
     private Integer id;
 
     @Column(name = "role_name")
-    @NotNull(message = ConstantUtils.ROLE_PATTERN)
+    @NotNull(message = ErrorConsts.ROLE_PATTERN)
     private String roleName;
 
-    @ManyToMany(mappedBy="roles")
-    private Set<User> users=new HashSet<>();
+    @ManyToMany(mappedBy="roleDOS")
+    private Set<UserDO> userDOS=new HashSet<>();
 
-    @ManyToMany(targetEntity = Action.class,cascade = CascadeType.ALL)
+    @ManyToMany(targetEntity = ActionDO.class,cascade = CascadeType.ALL)
     @JoinTable(name="tb_role_action",
             joinColumns={@JoinColumn(name="role_id",referencedColumnName = "id")},
             inverseJoinColumns={@JoinColumn(name="action_id",referencedColumnName = "id")})
-    private Set<Action> actions=new HashSet<>();
+    private Set<ActionDO> actionDOS=new HashSet<>();
 
 }

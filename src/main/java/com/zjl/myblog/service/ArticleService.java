@@ -1,9 +1,9 @@
 package com.zjl.myblog.service;
 
-import com.zjl.myblog.domain.Article;
+import com.zjl.myblog.domain.ArticleDO;
 
 
 public interface ArticleService {
 
-     Article addArticle(Article article) throws Exception;
+     ArticleDO addArticle(ArticleDO article) throws Exception;
 }

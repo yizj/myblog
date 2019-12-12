@@ -1,4 +1,4 @@
-package com.zjl.myblog.utils;
+package com.zjl.myblog.util;
 
 import com.alibaba.fastjson.JSON;
 

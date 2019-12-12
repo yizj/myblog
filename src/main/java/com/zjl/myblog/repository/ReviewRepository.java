@@ -1,6 +1,6 @@
 package com.zjl.myblog.repository;
 
-import com.zjl.myblog.domain.Review;
+import com.zjl.myblog.domain.ReviewDO;
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.stereotype.Repository;
 
@@ -10,5 +10,5 @@ import org.springframework.stereotype.Repository;
  * @Date:Created in 2019/12/2
  */
 @Repository
-public interface ReviewRepository extends JpaRepository<Review,Integer> {
+public interface ReviewRepository extends JpaRepository<ReviewDO,Integer> {
 }

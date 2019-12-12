@@ -1,4 +1,4 @@
-package com.zjl.myblog.utils;
+package com.zjl.myblog.util;
 
 import org.springframework.validation.BindingResult;
 import org.springframework.validation.ObjectError;
@@ -11,7 +11,7 @@ import java.util.List;
  * @Description:
  * @Date:Created in 2019/10/31
  */
-public class ValidatedUtils {
+public class ValidatedUtil {
 
     /**
      *@Description: 解析校验返回消息

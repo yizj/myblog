@@ -1,4 +1,4 @@
-package com.zjl.myblog.utils;
+package com.zjl.myblog.util;
 
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;

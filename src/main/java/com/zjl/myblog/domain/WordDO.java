@@ -15,7 +15,7 @@ import java.io.Serializable;
 @Table(name = "tb_word")
 @Data
 @ToString
-public class Word implements Serializable {
+public class WordDO implements Serializable {
     private static final long serialVersionUID = -4691455148481647443L;
 
     @Id

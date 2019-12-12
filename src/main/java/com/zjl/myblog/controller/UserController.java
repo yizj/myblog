@@ -2,11 +2,11 @@ package com.zjl.myblog.controller;
 
 import com.zjl.myblog.annotation.Log;
 import com.zjl.myblog.api.BaseResponse;
-import com.zjl.myblog.domain.User;
-import com.zjl.myblog.domain.UserDto;
+import com.zjl.myblog.domain.UserDO;
+import com.zjl.myblog.dto.UserDto;
 import com.zjl.myblog.service.UserService;
-import com.zjl.myblog.utils.BaseResponseUtil;
-import com.zjl.myblog.utils.ValidatedUtils;
+import com.zjl.myblog.util.BaseResponseUtil;
+import com.zjl.myblog.util.ValidatedUtil;
 import io.swagger.annotations.Api;
 import io.swagger.annotations.ApiImplicitParam;
 import io.swagger.annotations.ApiOperation;
@@ -32,9 +32,9 @@ public class UserController {
     @ApiOperation(value = "添加用户",notes = "post请求")
     @ApiImplicitParam(paramType = "path",required = true)
     @PostMapping
-    public BaseResponse<User> addUser(@RequestBody @Validated User user, BindingResult bindingResult) throws Exception {
+    public BaseResponse<UserDO> addUser(@RequestBody @Validated UserDO user, BindingResult bindingResult) throws Exception {
         // 校验参数
-        ValidatedUtils.getBindingResult(bindingResult);
+        ValidatedUtil.getBindingResult(bindingResult);
         return BaseResponseUtil.success(userService.addUser(user),"添加用户成功");
     }
 
@@ -42,7 +42,7 @@ public class UserController {
     @ApiOperation(value = "用户登录",notes = "get请求")
     @ApiImplicitParam(paramType = "path",required = true)
     @GetMapping
-    public BaseResponse<UserDto> loginUser(String userEmail,String userPwd) throws Exception {
+    public BaseResponse<UserDto> loginUser(String userEmail, String userPwd) throws Exception {
         return BaseResponseUtil.success(
                 userService.userLogin(userEmail,userPwd),
                 "用户登录成功");

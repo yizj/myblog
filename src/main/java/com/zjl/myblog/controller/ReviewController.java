@@ -2,10 +2,10 @@ package com.zjl.myblog.controller;
 
 import com.zjl.myblog.annotation.Log;
 import com.zjl.myblog.api.BaseResponse;
-import com.zjl.myblog.domain.Review;
+import com.zjl.myblog.domain.ReviewDO;
 import com.zjl.myblog.service.ReviewService;
-import com.zjl.myblog.utils.BaseResponseUtil;
-import com.zjl.myblog.utils.ValidatedUtils;
+import com.zjl.myblog.util.BaseResponseUtil;
+import com.zjl.myblog.util.ValidatedUtil;
 import io.swagger.annotations.Api;
 import io.swagger.annotations.ApiImplicitParam;
 import io.swagger.annotations.ApiOperation;
@@ -35,9 +35,9 @@ public class ReviewController {
     @ApiOperation ( value = "发布文章评论",notes = "POST请求")
     @PostMapping
     @ApiImplicitParam(paramType = "path" ,required = true)
-    public BaseResponse<Review> addReview(@RequestBody @Validated Review review, BindingResult bindingResult) throws Exception {
+    public BaseResponse<ReviewDO> addReview(@RequestBody @Validated ReviewDO review, BindingResult bindingResult) throws Exception {
         //校验参数
-        ValidatedUtils.getBindingResult(bindingResult);
+        ValidatedUtil.getBindingResult(bindingResult);
         return BaseResponseUtil.success (reviewService.addReview(review),"发布评论成功");
     }
 }

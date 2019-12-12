@@ -1,6 +1,6 @@
 package com.zjl.myblog.service;
 
-import com.zjl.myblog.domain.Review;
+import com.zjl.myblog.domain.ReviewDO;
 
 public interface ReviewService {
 
@@ -8,5 +8,5 @@ public interface ReviewService {
           * 发表评论
           * @exception
           */
-        Review addReview(Review review);
+        ReviewDO addReview(ReviewDO review);
 }

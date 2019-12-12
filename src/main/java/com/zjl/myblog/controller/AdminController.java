@@ -2,10 +2,10 @@ package com.zjl.myblog.controller;
 
 import com.zjl.myblog.annotation.Log;
 import com.zjl.myblog.api.BaseResponse;
-import com.zjl.myblog.domain.User;
+import com.zjl.myblog.domain.UserDO;
 import com.zjl.myblog.service.UserService;
-import com.zjl.myblog.utils.BaseResponseUtil;
-import com.zjl.myblog.utils.ValidatedUtils;
+import com.zjl.myblog.util.BaseResponseUtil;
+import com.zjl.myblog.util.ValidatedUtil;
 import io.swagger.annotations.Api;
 import io.swagger.annotations.ApiImplicitParam;
 import io.swagger.annotations.ApiOperation;
@@ -34,9 +34,9 @@ public class AdminController {
     @ApiOperation(value = "添加管理员", notes = "post请求")
     @ApiImplicitParam(paramType = "path", required = true)
     @PostMapping
-    public BaseResponse<User> addUser(@RequestBody @Validated User user, BindingResult bindingResult) throws Exception {
+    public BaseResponse<UserDO> addUser(@RequestBody @Validated UserDO user, BindingResult bindingResult) throws Exception {
         //校验参数
-        ValidatedUtils.getBindingResult(bindingResult);
+        ValidatedUtil.getBindingResult(bindingResult);
         //添加用户校验信息
         Subject subject = SecurityUtils.getSubject();
         UsernamePasswordToken usernamePasswordToken = new UsernamePasswordToken(

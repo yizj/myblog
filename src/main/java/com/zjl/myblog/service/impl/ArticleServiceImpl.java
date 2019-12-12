@@ -1,6 +1,6 @@
 package com.zjl.myblog.service.impl;
 
-import com.zjl.myblog.domain.Article;
+import com.zjl.myblog.domain.ArticleDO;
 import com.zjl.myblog.repository.ArticleRepository;
 import com.zjl.myblog.service.ArticleService;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -13,8 +13,8 @@ public class ArticleServiceImpl implements ArticleService {
     private ArticleRepository articleRepository;
 
     @Override
-    public Article addArticle(Article article) throws Exception {
-        Article resArticle = articleRepository.save(article);
+    public ArticleDO addArticle(ArticleDO article) throws Exception {
+        ArticleDO resArticle = articleRepository.save(article);
         if (resArticle == null) {
             throw new Exception("发布文章失败!");
         }

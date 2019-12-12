@@ -15,7 +15,7 @@ import java.io.Serializable;
 @Data
 @Table(name = "tb_review")
 @ToString
-public class Review implements Serializable {
+public class ReviewDO implements Serializable {
     private static final long serialVersionUID = -6888169019765149804L;
 
     @Id

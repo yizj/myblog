@@ -1,7 +1,7 @@
 package com.zjl.myblog.service;
 
-import com.zjl.myblog.domain.User;
-import com.zjl.myblog.domain.UserDto;
+import com.zjl.myblog.domain.UserDO;
+import com.zjl.myblog.dto.UserDto;
 
 
 import java.util.List;
@@ -13,9 +13,9 @@ import java.util.List;
  */
 public interface UserService {
 
-     User addUser(User user) throws Exception;
+     UserDO addUser(UserDO user) throws Exception;
 
-     List<User> addUsers(List<User> user) throws Exception;
+     List<UserDO> addUsers(List<UserDO> user) throws Exception;
 
      UserDto userLogin(String userEmail, String userPwd);
 

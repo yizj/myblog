@@ -1,4 +1,4 @@
-package com.zjl.myblog.utils;
+package com.zjl.myblog.util;
 
 import java.text.ParseException;
 import java.text.SimpleDateFormat;

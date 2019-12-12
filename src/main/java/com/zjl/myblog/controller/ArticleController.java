@@ -2,10 +2,10 @@ package com.zjl.myblog.controller;
 
 import com.zjl.myblog.annotation.Log;
 import com.zjl.myblog.api.BaseResponse;
-import com.zjl.myblog.domain.Article;
+import com.zjl.myblog.domain.ArticleDO;
 import com.zjl.myblog.service.ArticleService;
-import com.zjl.myblog.utils.BaseResponseUtil;
-import com.zjl.myblog.utils.ValidatedUtils;
+import com.zjl.myblog.util.BaseResponseUtil;
+import com.zjl.myblog.util.ValidatedUtil;
 import io.swagger.annotations.Api;
 import io.swagger.annotations.ApiImplicitParam;
 import io.swagger.annotations.ApiOperation;
@@ -29,9 +29,9 @@ public class ArticleController {
     @ApiOperation(value = "发布文章",notes = "post请求")
     @ApiImplicitParam(paramType = "path",required = true)
     @PostMapping
-    public BaseResponse<Article> addArticle(@Validated @RequestBody Article article, BindingResult bindingResult) throws Exception {
+    public BaseResponse<ArticleDO> addArticle(@Validated @RequestBody ArticleDO article, BindingResult bindingResult) throws Exception {
         //验证
-        ValidatedUtils.getBindingResult(bindingResult);
+        ValidatedUtil.getBindingResult(bindingResult);
         return  BaseResponseUtil.success(articleService.addArticle(article),"文章发布成功");
     }
 

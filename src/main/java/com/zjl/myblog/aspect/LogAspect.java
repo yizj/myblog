@@ -1,7 +1,7 @@
 package com.zjl.myblog.aspect;
 
-import com.zjl.myblog.utils.DateFormatUtil;
-import com.zjl.myblog.utils.LogUtil;
+import com.zjl.myblog.util.DateFormatUtil;
+import com.zjl.myblog.util.LogUtil;
 import org.aspectj.lang.JoinPoint;
 import org.aspectj.lang.annotation.*;
 import org.springframework.stereotype.Component;
