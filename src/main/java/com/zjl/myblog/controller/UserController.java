@@ -32,7 +32,7 @@ public class UserController {
     @ApiOperation(value = "添加用户",notes = "post请求")
     @ApiImplicitParam(paramType = "path",required = true)
     @PostMapping
-    public BaseResponse<UserDO> addUser(@RequestBody @Validated UserDO user, BindingResult bindingResult) throws Exception {
+    public BaseResponse<UserDO> saveUser(@RequestBody @Validated UserDO user, BindingResult bindingResult) throws Exception {
         // 校验参数
         ValidatedUtil.getBindingResult(bindingResult);
         return BaseResponseUtil.success(userService.addUser(user),"添加用户成功");

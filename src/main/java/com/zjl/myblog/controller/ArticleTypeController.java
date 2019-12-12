@@ -29,7 +29,7 @@ public class ArticleTypeController {
     @PostMapping
     @ApiOperation(value = "添加种类", notes = "post请求")
     @ApiImplicitParam(paramType = "path", required = true)
-    public BaseResponse<ArticleTypeDO> addArticleType(@RequestBody @Validated ArticleTypeDO articleType, BindingResult bindingResult) throws Exception {
+    public BaseResponse<ArticleTypeDO> saveArticleType(@RequestBody @Validated ArticleTypeDO articleType, BindingResult bindingResult) throws Exception {
         //校验参数
         ValidatedUtil.getBindingResult(bindingResult);
         return BaseResponseUtil.success(articleTypeService.addArticleType(articleType), "添加文章种类成功");

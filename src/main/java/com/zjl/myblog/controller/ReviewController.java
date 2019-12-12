@@ -35,7 +35,7 @@ public class ReviewController {
     @ApiOperation ( value = "发布文章评论",notes = "POST请求")
     @PostMapping
     @ApiImplicitParam(paramType = "path" ,required = true)
-    public BaseResponse<ReviewDO> addReview(@RequestBody @Validated ReviewDO review, BindingResult bindingResult) throws Exception {
+    public BaseResponse<ReviewDO> saveReview(@RequestBody @Validated ReviewDO review, BindingResult bindingResult) throws Exception {
         //校验参数
         ValidatedUtil.getBindingResult(bindingResult);
         return BaseResponseUtil.success (reviewService.addReview(review),"发布评论成功");

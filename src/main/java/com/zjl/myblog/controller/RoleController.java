@@ -34,7 +34,7 @@ public class RoleController {
     @ApiImplicitParam(paramType = "path",name = "roleName",value="角色名称",required =true )
     @PostMapping
     @Log("角色添加")
-    public BaseResponse<RoleDO> addRole(@RequestBody @Validated RoleDO role, BindingResult bindingResult) throws Exception
+    public BaseResponse<RoleDO> saveRole(@RequestBody @Validated RoleDO role, BindingResult bindingResult) throws Exception
     {
         //校验参数
         ValidatedUtil.getBindingResult(bindingResult);
