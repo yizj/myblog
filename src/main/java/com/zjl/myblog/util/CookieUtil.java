@@ -1,5 +1,6 @@
 package com.zjl.myblog.util;
 
+import com.zjl.myblog.annotation.Log;
 import com.zjl.myblog.constant.ViewConsts;
 import org.springframework.util.StringUtils;
 
@@ -15,6 +16,7 @@ import javax.servlet.http.HttpServletResponse;
  */
 public class CookieUtil {
 
+    @Log
     public static String getCookie(HttpServletRequest request, String cookieName) {
 
         Cookie[] cookies = request.getCookies();
@@ -28,6 +30,7 @@ public class CookieUtil {
         return null;
     }
 
+    @Log
     public static String getCookie(HttpServletRequest request){
         String token=(String)request.getAttribute ( ViewConsts.TOKEN );
         if(StringUtils.isEmpty ( token )){
@@ -35,6 +38,8 @@ public class CookieUtil {
         }
         return token;
     }
+
+    @Log
     public static void writeCookie(HttpServletResponse response, String cookieName, String value) {
         Cookie cookie = new Cookie(cookieName, value);
         cookie.setPath("/");

@@ -1,5 +1,7 @@
 package com.zjl.myblog.util;
 
+import com.zjl.myblog.annotation.Log;
+
 import javax.servlet.http.HttpServletRequest;
 import java.net.InetAddress;
 import java.net.UnknownHostException;
@@ -12,6 +14,7 @@ import java.net.UnknownHostException;
  */
 public class IpUtil {
 
+    @Log
     public static String getIpAddr(HttpServletRequest request) {
         String ipAddress = null;
         try {

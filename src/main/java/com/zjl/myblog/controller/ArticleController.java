@@ -60,4 +60,11 @@ public class ArticleController {
                 "文章查询成功");
     }
 
+    @Log("读取文章")
+    @ApiOperation(value = "读取文章",notes = "get请求")
+    @ApiImplicitParam(paramType = "path",required = true)
+    @GetMapping()
+    public BaseResponse<ArticleDO> getArticle(Integer id){
+        return BaseResponseUtil.success ( articleService.getArticleById ( id ), "文章查询成功");
+    }
 }

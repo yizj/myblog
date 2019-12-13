@@ -15,4 +15,6 @@ public interface ArticleService {
      Page<ArticleDO> listArticles(PageVO pageVO);
 
      Page listArticlesByCondition(PageVO pageVO, ArticleDto articleDto);
+
+     ArticleDO getArticleById(Integer id);
 }

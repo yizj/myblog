@@ -13,4 +13,9 @@ public class ServiceConsts {
     public static final String EMAIL_TYPE="EMAIL";
 
     public static final String EMAIL_STEP="ACTIVE";
+
+    public static final String ARTICLE_OBJECT_TYPE="ArticleDO";
+
+    public static final String ARTICLE_OBJECT_PROPERTY="articleCount";
+
 }

@@ -4,6 +4,7 @@ import com.zjl.myblog.constant.ViewConsts;
 import com.zjl.myblog.util.CookieUtil;
 import com.zjl.myblog.util.IpUtil;
 import com.zjl.myblog.util.LogUtil;
+import lombok.extern.java.Log;
 import org.springframework.util.StringUtils;
 
 import javax.servlet.*;

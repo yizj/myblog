@@ -7,4 +7,6 @@ import org.springframework.stereotype.Repository;
 
 @Repository
 public interface ArticleRepository extends JpaRepository<ArticleDO, Integer>,JpaSpecificationExecutor {
+
+    ArticleDO findArticleDOById(Integer id);
 }

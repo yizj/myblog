@@ -45,6 +45,7 @@ public class ArticleDO implements Serializable {
     /**
      * 文章阅读数
      */
+    @JsonIgnore
     @Column(name = "article_count")
     private Integer articleCount;
 

@@ -1,5 +1,7 @@
 package com.zjl.myblog.util;
 
+import com.zjl.myblog.annotation.Log;
+
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
 import java.util.Calendar;
@@ -13,6 +15,7 @@ import java.util.Date;
  */
 public class DateFormatUtil {
 
+    @Log
     public static String getCurrentTime(String parrent){
 
         long now=System.currentTimeMillis ();
