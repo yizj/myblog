@@ -17,6 +17,8 @@ import org.springframework.validation.BindingResult;
 import org.springframework.validation.annotation.Validated;
 import org.springframework.web.bind.annotation.*;
 
+import javax.servlet.http.HttpServletRequest;
+
 @RestController
 @Api(tags = "文章接口")
 @RequestMapping("/article")
@@ -29,10 +31,13 @@ public class ArticleController {
     @ApiOperation(value = "发布文章",notes = "post请求")
     @ApiImplicitParam(paramType = "path",required = true)
     @PostMapping
-    public BaseResponse<ArticleDO> saveArticle(@Validated @RequestBody ArticleDO article, BindingResult bindingResult) throws Exception {
+    public BaseResponse<ArticleDO> saveArticle(@Validated @RequestBody ArticleDO article,
+                                               BindingResult bindingResult,
+                                               HttpServletRequest request
+                                               ) throws Exception {
         // 验证
         ValidatedUtil.getBindingResult(bindingResult);
-        return  BaseResponseUtil.success(articleService.addArticle(article),"文章发布成功");
+        return  BaseResponseUtil.success(articleService.addArticle(article,request),"文章发布成功");
     }
 
     @Log("查询所有文章并分页")

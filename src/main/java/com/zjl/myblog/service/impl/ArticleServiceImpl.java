@@ -1,10 +1,17 @@
 package com.zjl.myblog.service.impl;
 
+import com.zjl.myblog.constant.DateConsts;
 import com.zjl.myblog.constant.RepositoryConsts;
+import com.zjl.myblog.constant.ViewConsts;
 import com.zjl.myblog.domain.ArticleDO;
 import com.zjl.myblog.dto.ArticleDto;
+import com.zjl.myblog.dto.UserDto;
 import com.zjl.myblog.repository.ArticleRepository;
 import com.zjl.myblog.service.ArticleService;
+import com.zjl.myblog.service.RedisService;
+import com.zjl.myblog.util.CookieUtil;
+import com.zjl.myblog.util.DateFormatUtil;
+import com.zjl.myblog.util.JsonClassConvertUtil;
 import com.zjl.myblog.vo.PageVO;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.Page;
@@ -19,6 +26,7 @@ import javax.persistence.criteria.CriteriaBuilder;
 import javax.persistence.criteria.CriteriaQuery;
 import javax.persistence.criteria.Predicate;
 import javax.persistence.criteria.Root;
+import javax.servlet.http.HttpServletRequest;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -27,12 +35,23 @@ import java.util.List;
 public class ArticleServiceImpl implements ArticleService {
 
     @Autowired
-    private ArticleRepository articleRepository;
+    private transient ArticleRepository articleRepository;
+
+    @Autowired
+    private transient RedisService redisService;
 
     @Override
-    public ArticleDO addArticle(ArticleDO article) throws Exception {
-
+    public ArticleDO addArticle(ArticleDO article, HttpServletRequest request) throws Exception {
+        String token;
+        article.setArticleSendTime ( DateFormatUtil.getCurrentTime ( DateConsts.Y_M_D_HMS ) );
+        token=CookieUtil.getCookie ( request,ViewConsts.TOKEN );
+        if(StringUtils.isEmpty ( token )){
+            token=CookieUtil.getCookie ( request );
+        }
+        UserDto userDto=JsonClassConvertUtil.stringToBean ( redisService.get ( token ),UserDto.class );
+        article.setArticleAuthId ( userDto.getId () );
         ArticleDO resArticle = articleRepository.save(article);
+
         if (resArticle == null) {
             throw new Exception("发布文章失败!");
         }

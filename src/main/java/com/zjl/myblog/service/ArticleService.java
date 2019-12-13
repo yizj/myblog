@@ -5,11 +5,12 @@ import com.zjl.myblog.dto.ArticleDto;
 import com.zjl.myblog.vo.PageVO;
 import org.springframework.data.domain.Page;
 
+import javax.servlet.http.HttpServletRequest;
 
 
 public interface ArticleService {
 
-     ArticleDO addArticle(ArticleDO article) throws Exception;
+     ArticleDO addArticle(ArticleDO article, HttpServletRequest request) throws Exception;
 
      Page<ArticleDO> listArticles(PageVO pageVO);
 

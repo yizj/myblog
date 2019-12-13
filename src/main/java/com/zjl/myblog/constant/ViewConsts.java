@@ -17,4 +17,8 @@ public class ViewConsts {
      */
     public static final Integer ERROR_CODE = 100;
 
+    public static final String TOKEN="token";
+
+    public static final String USER_STATUS="游客";
+
 }

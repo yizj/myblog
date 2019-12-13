@@ -88,6 +88,7 @@ public class UserServiceImpl implements UserService {
         redisService.set(token,value);
         // 设置过期时间
         redisService.expire(token,30*60);
+
         return userDto;
     }
 

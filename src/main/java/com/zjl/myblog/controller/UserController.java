@@ -2,10 +2,12 @@ package com.zjl.myblog.controller;
 
 import com.zjl.myblog.annotation.Log;
 import com.zjl.myblog.api.BaseResponse;
+import com.zjl.myblog.constant.ViewConsts;
 import com.zjl.myblog.domain.UserDO;
 import com.zjl.myblog.dto.UserDto;
 import com.zjl.myblog.service.UserService;
 import com.zjl.myblog.util.BaseResponseUtil;
+import com.zjl.myblog.util.CookieUtil;
 import com.zjl.myblog.util.ValidatedUtil;
 import io.swagger.annotations.Api;
 import io.swagger.annotations.ApiImplicitParam;
@@ -14,6 +16,8 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.validation.BindingResult;
 import org.springframework.validation.annotation.Validated;
 import org.springframework.web.bind.annotation.*;
+
+import javax.servlet.http.HttpServletResponse;
 
 /**
  * @Author:jlzhang
@@ -42,9 +46,10 @@ public class UserController {
     @ApiOperation(value = "用户登录",notes = "get请求")
     @ApiImplicitParam(paramType = "path",required = true)
     @GetMapping
-    public BaseResponse<UserDto> loginUser(String userEmail, String userPwd) throws Exception {
-        return BaseResponseUtil.success(
-                userService.userLogin(userEmail,userPwd),
-                "用户登录成功");
+    public BaseResponse<UserDto> loginUser(String userEmail, String userPwd, HttpServletResponse response){
+
+        UserDto userDto=userService.userLogin(userEmail,userPwd);
+        CookieUtil.writeCookie ( response,ViewConsts.TOKEN,userDto.getToken () );
+        return BaseResponseUtil.success( userDto, "用户登录成功");
     }
 }

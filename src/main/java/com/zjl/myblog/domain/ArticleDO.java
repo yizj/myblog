@@ -1,5 +1,6 @@
 package com.zjl.myblog.domain;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import lombok.Data;
 import lombok.ToString;
 
@@ -20,8 +21,10 @@ public class ArticleDO implements Serializable {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
+    @JsonIgnore
     private Integer id;
 
+    @JsonIgnore
     @Column(name = "article_typeid")
     private Integer articleTypeId;
 
@@ -32,9 +35,11 @@ public class ArticleDO implements Serializable {
     private String articleContent;
 
     @Column(name = "article_sendtime")
+    @JsonIgnore
     private String articleSendTime;
 
     @Column(name = "article_authid")
+    @JsonIgnore
     private Integer articleAuthId;
 
     /**
@@ -47,6 +52,7 @@ public class ArticleDO implements Serializable {
      * 文章来源
      */
     @Column(name = "article_from")
+    @JsonIgnore
     private String articleFrom;
 
     @Column(name = "article_info")
