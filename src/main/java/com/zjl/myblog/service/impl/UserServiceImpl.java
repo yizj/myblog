@@ -13,6 +13,7 @@ import com.zjl.myblog.service.UserService;
 import com.zjl.myblog.util.BeanConvertUtil;
 import com.zjl.myblog.util.JsonClassConvertUtil;
 import org.springframework.stereotype.Service;
+import org.springframework.transaction.annotation.Transactional;
 import org.thymeleaf.TemplateEngine;
 import org.thymeleaf.context.Context;
 
@@ -40,8 +41,13 @@ public class UserServiceImpl implements UserService {
     @Resource
     private TemplateEngine templateEngine;
 
+    @Transactional(rollbackFor = {Exception.class})
     @Override
     public UserDO addUser(UserDO user) throws Exception {
+        UserDO res=userRepository.findByUserEmail(user.getUserEmail());
+        if (res != null) {
+            throw new Exception("该邮箱已经被注册");
+        }
         RoleDO role = new RoleDO ();
         ActionDO action = new ActionDO ();
         action.setActiobUrl("/admin");

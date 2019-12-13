@@ -46,18 +46,25 @@ public class ArticleServiceImpl implements ArticleService {
 
     @Override
     public ArticleDO addArticle(ArticleDO article, HttpServletRequest request) throws Exception {
-        String token;
+        String resToken="";
+        UserDto userDto=null;
         article.setArticleSendTime ( DateFormatUtil.getCurrentTime ( DateConsts.Y_M_D_HMS ) );
-        token=CookieUtil.getCookie ( request,ViewConsts.TOKEN );
+        String token=CookieUtil.getCookie ( request,ViewConsts.TOKEN );
         if(StringUtils.isEmpty ( token )){
-            token=CookieUtil.getCookie ( request );
+            resToken=CookieUtil.getCookie ( request );
         }
-
-        UserDto userDto=JsonClassConvertUtil.stringToBean ( redisService.get ( token ),UserDto.class );
+        else {
+             userDto=JsonClassConvertUtil.stringToBean ( redisService.get ( token ),UserDto.class );
+        }
         if (userDto != null) {
             article.setArticleAuthId ( userDto.getId () );
             article.setArticleFrom ( userDto.getUserName () );
         }
+        else {
+            article.setArticleAuthId(0);
+            article.setArticleFrom(resToken);
+        }
+
         // 文章发布初，数量为0
         article.setArticleCount ( 0 );
         ArticleDO resArticle = articleRepository.save(article);
@@ -98,7 +105,7 @@ public class ArticleServiceImpl implements ArticleService {
             @Override
             public Predicate toPredicate(Root<ArticleDO> root, CriteriaQuery<?> criteriaQuery, CriteriaBuilder criteriaBuilder) {
                 List<Predicate> predicates=new ArrayList<> ();
-                if(!StringUtils.isEmpty ( articleDto.getCondition () )){
+                if(!StringUtils.isEmpty ( articleDto.getArticleSendTime() )){
                     predicates.add (
                             criteriaBuilder.equal (
                                     root.get ( "articleSendTime" )

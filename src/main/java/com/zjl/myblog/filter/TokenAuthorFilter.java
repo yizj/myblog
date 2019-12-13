@@ -4,7 +4,6 @@ import com.zjl.myblog.constant.ViewConsts;
 import com.zjl.myblog.util.CookieUtil;
 import com.zjl.myblog.util.IpUtil;
 import com.zjl.myblog.util.LogUtil;
-import lombok.extern.java.Log;
 import org.springframework.util.StringUtils;
 
 import javax.servlet.*;
@@ -23,27 +22,22 @@ import java.io.IOException;
 public class TokenAuthorFilter implements Filter {
 
     @Override
-    public void init(FilterConfig filterConfig) throws ServletException {
-
-    }
-
-    @Override
     public void doFilter(ServletRequest servletRequest, ServletResponse servletResponse, FilterChain filterChain) throws IOException, ServletException {
         // 强转
         HttpServletRequest request=(HttpServletRequest)servletRequest;
         HttpServletResponse response=(HttpServletResponse)servletResponse;
         // 获取token
         String token=CookieUtil.getCookie ( request,ViewConsts.TOKEN );
+        // 获取ip
+        String ip=IpUtil.getIpAddr ( request );
         if(StringUtils.isEmpty ( token )){
             request.setAttribute ( ViewConsts.TOKEN, ViewConsts.USER_STATUS);
-            LogUtil.info ( TokenAuthorFilter.class,"该用户未登录，他的IP是：{0}",IpUtil.getIpAddr ( request ) );
+            LogUtil.info ( TokenAuthorFilter.class,"该用户未登录，他的IP是：{0}",ip);
         }
-        LogUtil.info (  TokenAuthorFilter.class, "该用户已登录，他的Cookie是：{0}",token);
+        else {
+            LogUtil.info(TokenAuthorFilter.class, "该用户已登录，他的Cookie和IP是{0}：", token, ip);
+        }
         filterChain.doFilter ( request,response );
     }
 
-    @Override
-    public void destroy() {
-
-    }
 }
